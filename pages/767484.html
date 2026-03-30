@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>人形可以获得位置行</title>
+    <meta name="description" content="查看原文完整攻略、数据表、流程说明和评论区补充信息。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/767484">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767371.html">地图攻略与收藏一览</a></li><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./767371.html">地图攻略与收藏一览</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767371.html">地图攻略与收藏一览</a>
+          <small>地图攻略与收藏一览</small>
+        </li><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./767371.html">地图攻略与收藏一览</a>
+          <small>地图攻略与收藏一览</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#人形・ぬいぐるみの获取位置と行けるゆめしま">人形可以获得位置行</a></li><li><a href="#フィールドで获取">获取</a></li><li><a href="#ランダムで获取">获取</a></li><li><a href="#人形・ぬいぐるみの一览">人形一览</a></li><li><a href="#特定のゆめしまに行ける人形">特定行人形</a></li><li><a href="#ランダムなゆめしまに行ける人形">行人形</a></li><li><a href="#人形・ぬいぐるみの探し方と获取方法">人形探方获取方法</a></li><li><a href="#光るポイントをいわくだきで采掘する">光采掘</a></li><li><a href="#ダウジングマシンを使用して宝可梦に誘導させる">使用宝可梦誘導</a></li><li><a href="#地图固定でおいてあるスポットもある">地图固定</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>人形可以获得位置行</h1>
+            <p class="sub-title">人形可以获得位置行</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.27 05:46</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>Pokopia(Pokémon Pokopia)人形文章。Pokopia人形可以获得位置当然，获取方法使道说明。Pokémon Pokopia人形想了解的话可以参考本文</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365479/416bfd5c8b78d27dcad0a7fc5a6dd158.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>Pokopia(Pokémon Pokopia)人形文章。Pokopia人形可以获得位置当然，获取方法使道说明。Pokémon Pokopia人形想了解的话可以参考本文</p><div class="inline-links"></div></div></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767371.html">
+                    <strong>地图攻略与收藏一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767411.html">
+                    <strong>古代遗物位置一览与获取方法全105种收录</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767434.html">
+                    <strong>人类记录位置一览与获取方法（共126种）</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767514.html">
+                    <strong>最佳镜头一览条件全44种類收录</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767503.html">
+                    <strong>位置一览与获取方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767637.html">
+                    <strong>CD一览与获取方法使道全43种收录</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h2 id="人形・ぬいぐるみの获取位置と行けるゆめしま" class="content-head level-2">人形可以获得位置行</h2><h3 id="フィールドで获取" class="content-head level-3">获取</h3><h3 id="ランダムで获取" class="content-head level-3">获取</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768567">
+                    <strong>查看原文 768567</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768996">
+                    <strong>查看原文 768996</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768465">
+                    <strong>查看原文 768465</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h2 id="人形・ぬいぐるみの一览" class="content-head level-2">人形一览</h2><h3 id="特定のゆめしまに行ける人形" class="content-head level-3">特定行人形</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768568">
+                    <strong>查看原文 768568</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767484">
+                    <strong>查看原文</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768293.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768061.html">
+                    <strong>高效获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768369">
+                    <strong>查看原文 768369</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768471">
+                    <strong>查看原文 768471</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767484">
+                    <strong>查看原文</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767796.html">
+                    <strong>糸高效获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768368">
+                    <strong>查看原文 768368</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768398">
+                    <strong>查看原文 768398</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768567">
+                    <strong>查看原文 768567</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767484">
+                    <strong>查看原文</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768194.html">
+                    <strong>(铁)高效获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768263.html">
+                    <strong>(金)获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/772042">
+                    <strong>查看原文 772042</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768996">
+                    <strong>查看原文 768996</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767484">
+                    <strong>查看原文</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768200.html">
+                    <strong>(銅)获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/772043">
+                    <strong>查看原文 772043</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768465">
+                    <strong>查看原文 768465</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767484">
+                    <strong>查看原文</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768300.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768267.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768201.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>行人形5種類。特定行，可以获得変化。素材集効率良，推荐</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767482.html">传说宝可梦一览与获取方法</a></div></div></section><h3 id="ランダムなゆめしまに行ける人形" class="content-head level-3">行人形</h3><section class="content-block paragraph-block"><div class="content-copy"><p>百变怪人形人形，行可以</p><div class="inline-links"></div></div></section><h2 id="人形・ぬいぐるみの探し方と获取方法" class="content-head level-2">人形探方获取方法</h2><h3 id="光るポイントをいわくだきで采掘する" class="content-head level-3">光采掘</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365368/17f720839d6c957c7f7b9ae5a3fbc956.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>人形，溢出光采掘，有概率获得。光見采掘癖</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./771035.html">发光地面查看方法与可以获得内容</a></div></div></section><h3 id="ダウジングマシンを使用して宝可梦に誘導させる" class="content-head level-3">使用宝可梦誘導</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364998/76be2454dda75eb665a469bbb1dd26f8.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>人形，得意宝可梦連状態使，該当宝可梦埋位置誘導。誘導位置下掘進光，確率人形可以获得</p><div class="inline-links"></div></div></section><h4 id="ダウジングマシンは-パサパサこうや-で获取" class="content-head level-4">获取</h4><section class="content-block paragraph-block"><div class="content-copy"><p>可以获得。宝可梦西進先，高台岩下落。持方可以获得吧</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767408.html">获取方法</a></div></div></section><h3 id="地图固定でおいてあるスポットもある" class="content-head level-3">地图固定</h3><section class="content-block paragraph-block"><div class="content-copy"><p>人形，地图固定存在。立寄際回収推荐</p><div class="inline-links"></div></div></section><h2 id="人形・ぬいぐるみの使い道" class="content-head level-2">人形使道</h2><h3 id="フワンテにみせるとゆめしまにいくことができる" class="content-head level-3">可以</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365442/025dbb6e621e67284e698f6b8feed3ec.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>人形，带在身边可以。人形種類行先変，事前确认</p><div class="inline-links"></div></div></section><h4 id="おいてある人形を調べるとフワンテを呼べる" class="content-head level-4">人形調呼</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365443/80212f694acdd17c002b16a6d8b238ca.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>置人形調，呼出可以。自分手持人形任意位置放置，呼出可以</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767482.html">传说宝可梦一览与获取方法</a></div></div></section><h4 id="宝可梦センターの付近で使おう" class="content-head level-4">宝可梦附近使</h4><section class="content-block paragraph-block"><div class="content-copy"><p>戻人形置位置宝可梦附近帰。宝可梦遠位置使戻回収手間生。呼際城镇宝可梦附近使推荐</p><div class="inline-links"></div></div></section><h2 id="相关文章" class="content-head level-2">相关文章</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767371.html">
+                    <strong>地图攻略与收藏一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767411.html">
+                    <strong>古代遗物位置一览与获取方法全105种收录</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767434.html">
+                    <strong>人类记录位置一览与获取方法（共126种）</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767514.html">
+                    <strong>最佳镜头一览条件全44种類收录</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767503.html">
+                    <strong>位置一览与获取方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767637.html">
+                    <strong>CD一览与获取方法使道全43种收录</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767418.html">
+                    <strong>一览与获取方法全37种收录</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767422.html">
+                    <strong>一览与获取方法全46种收录</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767423.html">
+                    <strong>一览与获取方法全22個收录</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767439.html">
+                    <strong>位置一览与获取方法全12個收录</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767441.html">
+                    <strong>位置一览与获取方法全16個收录</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767443.html">
+                    <strong>位置一览与获取方法全53個收录</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767444.html">
+                    <strong>位置一览与获取方法全11個收录</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767445.html">
+                    <strong>位置一览与获取方法全12個收录</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767446.html">
+                    <strong>位置一览与获取方法全4個收录</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767447.html">
+                    <strong>位置一览与获取方法全18個收录</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767550.html">
+                    <strong>位置</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767582.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767641.html">
+                    <strong>城镇收集要素汇总</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767646.html">
+                    <strong>城镇收集要素汇总</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767647.html">
+                    <strong>城镇收集要素汇总</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768187.html">
+                    <strong>城镇收集要素汇总</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767586.html">
+                    <strong>城镇前往方法与解锁条件</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768276.html">
+                    <strong>传说宝可梦与要做事项汇总</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768283.html">
+                    <strong>传说宝可梦与要做事项汇总</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768287.html">
+                    <strong>传说宝可梦与要做事项汇总</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768332.html">
+                    <strong>传说宝可梦与要做事项汇总</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768296.html">
+                    <strong>传说宝可梦与要做事项汇总</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

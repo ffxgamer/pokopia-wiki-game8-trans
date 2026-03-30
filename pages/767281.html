@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>前期高效推进方法</title>
+    <meta name="description" content="查看原文步骤、条件与注意事项。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/767281">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767513.html">提升方法与优点</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767513.html">提升方法与优点</a>
+          <small>提升方法与优点</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#前期の高效推进方法">前期高效推进方法</a></li><li><a href="#おねがいごとを先听委托いてあげよう">先听委托</a></li><li><a href="#宝可梦の生息地を作っておこう">先建立宝可梦栖息地</a></li><li><a href="#すみごこちを改善して环境レベルをあげよう">改善环境</a></li><li><a href="#日替わりチャレンジ-デイリー-を达成しよう">完成每日事项</a></li><li><a href="#ショップで背包整理のコツと種を优先して買おう">优先购买背包整理和种子</a></li><li><a href="#木を育てて資源を確保しよう">培育树木确保资源</a></li><li><a href="#家を建ててファストトラベル出来るようにしよう">建房并解锁快速传送</a></li><li><a href="#3dプリンターでスプリンクラーをコピーしよう">3D 与自动浇水</a></li><li><a href="#ざいもくはストライクから获取木材できる">木材获取方法</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>前期高效推进方法</h1>
+            <p class="sub-title">前期高效推进方法</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.27 05:44</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>本文整理了《Pokémon Pokopia》前期高效推进的方法，以及新手前期应优先处理的事项。</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12362813/b784cdd30deb4263ea7c40aad4af013c.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>本文整理了《Pokémon Pokopia》前期高效推进的方法，以及新手前期应优先处理的事项。</p><div class="inline-links"></div></div></section><h2 id="前期の高效推进方法" class="content-head level-2">前期高效推进方法</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="#おねがいごとを先听委托いてあげよう">
+                    <strong>先听委托</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#宝可梦の生息地を作っておこう">
+                    <strong>先建立宝可梦栖息地</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#宝可梦の出現には時間経過が必要な場合がある">
+                    <strong>改善环境</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#家に引っ越しさせることで再利用可能">
+                    <strong>完成每日事项</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#すみごこちを改善して环境レベルをあげよう">
+                    <strong>优先购买背包整理和种子</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#日替わりチャレンジ-デイリー-を达成しよう">
+                    <strong>培育树木确保资源</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#ショップで背包整理のコツと種を优先して買おう">
+                    <strong>建房并解锁快速传送</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#木を育てて資源を確保しよう">
+                    <strong>3D</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#家を建ててファストトラベル出来るようにしよう">
+                    <strong>木材获取方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#3dプリンターでスプリンクラーをコピーしよう">
+                    <strong>素材自动回收</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#さいばいが得意な宝可梦を配置して畑を作ろう">
+                    <strong>与宝可梦成为伙伴后可以解锁功能</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h3 id="おねがいごとを先听委托いてあげよう" class="content-head level-3">先听委托</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12362789/1a235ed038a4b85f06e4802e6b7a89ad.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>如果前期不知道该做什么，优先完成宝可梦的委托即可。在《Pokémon Pokopia》的世界中，遇到的宝可梦会向主角提出愿望，完成这些委托后就能推进剧情与环境建设。</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767282.html">剧情攻略流程一览</a></div></div></section><h3 id="宝可梦の生息地を作っておこう" class="content-head level-3">先建立宝可梦栖息地</h3><section class="content-block paragraph-block"><div class="content-copy"><p>推进宝可梦委托后，就能开始制作栖息地。调查地面上的宝可梦气息后，可以登记该宝可梦喜欢的环境，再依照登记内容建造栖息地，让目标宝可梦出现。</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>遇见一定数量的宝可梦后，会陆续解锁奖励；新结识的宝可梦还能带来更多擅长工作与新招式。</p><div class="inline-links"></div></div></section><h4 id="宝可梦の出現には時間経過が必要な場合がある" class="content-head level-4">宝可梦出现有时需要等待时间</h4><section class="content-block paragraph-block"><div class="content-copy"><p>制作栖息地后，宝可梦不一定会立刻出现，有时需要等待一段时间。宝可梦出现、委托刷新和每日事项会一起推进，适合在前期同步处理。</p><div class="inline-links"></div></div></section><h4 id="家に引っ越しさせることで再利用可能" class="content-head level-4">搬进住宅后可重复利用</h4><section class="content-block paragraph-block"><div class="content-copy"><p>一个栖息地通常只能住一只宝可梦。等宝可梦搬进住宅后，原本的栖息地就会空出来，可以继续重复利用。</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>如果多个宝可梦都能使用同一种栖息地，建议在它们搬进住宅后重复利用该栖息地，这样能节省大量素材。</p><div class="inline-links"><a class="inline-link" href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></div></div></section><h3 id="すみごこちを改善して环境レベルをあげよう" class="content-head level-3">改善环境</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12362720/9be01859412fba5fb3a8f8d80bac61bd.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>等待新宝可梦出现的期间，可以顺手改善当前城镇环境。环境提升后会解锁新商品，也可以通过与宝可梦对话中的“？”选项确认它们想要的东西。</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>当前的宝可梦居住环境，可以在对应界面里打开确认。</p><div class="inline-links"><a class="inline-link" href="./767513.html">提升方法与优点</a></div></div></section><h3 id="日替わりチャレンジ-デイリー-を达成しよう" class="content-head level-3">完成每日事项</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12362713/23c2eab204e11e07be6d7305cee01657.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>剧情推进到一定程度后，每日要素也会陆续解锁。许多每日任务都很容易完成，而且每天都会刷新，记得稳定完成来高效积累资源。</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>每日事项可以在相关界面中确认。</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767308.html">每日要素与每天该做的事汇总</a></div></div></section><h3 id="ショップで背包整理のコツと種を优先して買おう" class="content-head level-3">优先购买背包整理和种子</h3><section class="content-block paragraph-block"><div class="content-copy"><p>随着流程推进，持有物会越来越多，因此最优先推荐购买“背包整理”来扩充容量。越早买，前期体验越顺。</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>前期建议尽早购买植物种子并开始做农田。后续推进剧情时经常会需要作物，提前种植会轻松很多。</p><div class="inline-links"><a class="inline-link" href="./767357.html">商店购买推荐</a></div></div></section><h3 id="木を育てて資源を確保しよう" class="content-head level-3">培育树木确保资源</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12375091/27d74a31090ae5bbc01ab5fffd8bc2cd.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>城镇里有不少枯树木。对它们使用“水枪”后可以让树木恢复，之后就能定期获得树果等素材。</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>尤其树果类素材用途很多，所以看到枯树木时，建议都顺手恢复。</p><div class="inline-links"><a class="inline-link" href="./767305.html">木材获取方法与 PP 回复方法</a><a class="inline-link" href="./767409.html">百变怪招式一览与学会方法、招式强化方法</a></div></div></section><h3 id="家を建ててファストトラベル出来るようにしよう" class="content-head level-3">建房并解锁快速传送</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12375515/5687d3d3ad5e5624c0c04d40a68539a5.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>为了方便移动，建议尽早建造自己的住宅。建好后别忘了在屋顶或屋内放置“百变怪旗”，这样回家会更方便。</p><div class="inline-links"><a class="inline-link" href="./767302.html">住宅建造方法与建筑用途</a></div></div></section><h3 id="3dプリンターでスプリンクラーをコピーしよう" class="content-head level-3">3D 与自动浇水</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769157">
+                    <strong>查看原文 769157</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767309.html">
+                    <strong>城镇攻略流程2</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>完成修复相关任务后，拍照用的“3D”功能就会解锁。</p><div class="inline-links"><a class="inline-link" href="./767420.html">宝可梦修复方法</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>3D 功能很值得尽快解锁，之后可以拿来辅助农田浇水自动化，大幅提升种植效率。</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>第一处推荐地点是山地区域的农田附近。到那里拍照后，就能更早开始活用 3D 功能。</p><div class="inline-links"><a class="inline-link" href="./768266.html">3D 用法推荐与解锁条件</a></div></div></section><h4 id="さいばいが得意な宝可梦を配置して畑を作ろう" class="content-head level-4">安排擅长种植的宝可梦管理农田</h4><section class="content-block paragraph-block"><div class="content-copy"><p>把擅长种植的宝可梦安排在农田附近后，植物成长会更快，也能减少浇水和照看的麻烦。</p><div class="inline-links"><a class="inline-link" href="./767548.html">效果宝可梦一览</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>另外也能把收获流程半自动化。作物成熟时长按 Y，可以保留苗并一次性收走成熟作物，收菜效率很高。</p><div class="inline-links"><a class="inline-link" href="./767900.html">居合斩学会方法、效果与用法</a><a class="inline-link" href="./767639.html">农业高效玩法与农田建造方法</a></div></div></section><h3 id="ざいもくはストライクから获取木材できる" class="content-head level-3">木材获取方法</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12376478/331776e694874c1efc4b7726fdd89a2c.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>前期很推荐先开始囤积这类素材。它们在剧情、伙伴委托和建筑制作中都会大量用到，越早准备越轻松。</p><div class="inline-links"><a class="inline-link" href="./767690.html">木材高效收集方法与用途</a><a class="inline-link" href="https://game8.jp/pocoapokemon/767804">查看原文 767804</a></div></div></section><h3 id="ちらかすとしわけるで素材を自动回収できる" class="content-head level-3">素材自动回收</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12376678/61da08810ae1a493e825f748c7eb1b3a.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>如果让拥有对应招式或特长的宝可梦住在附近，就能更高效地自动收集特定素材。</p><div class="inline-links"><a class="inline-link" href="./767402.html">宝可梦图鉴一览（全 303 种）</a></div></div></section><h3 id="フワンテと伙伴になってゆめしまを解锁しよう" class="content-head level-3">与宝可梦成为伙伴后可以解锁功能</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365384/c2574eae74a363d25abb5b7e2334c408.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>在荒野城镇西侧与目标宝可梦对话后，会触发委托，并让它成为伙伴。</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>成为伙伴后会解锁新的内容。梦岛里还能拿到一些限定收集物，前期能去的话建议尽早去。</p><div class="inline-links"><a class="inline-link" href="./767484.html">人偶获取位置一览</a><a class="inline-link" href="./767482.html">传说宝可梦一览与获取方法</a></div></div></section><h2 id="前期は気にしなくて良い要素" class="content-head level-2">前期优先事项</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="#ざいもくはストライクから获取木材できる">
+                    <strong>推荐在入团挑战通关后再推进</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#ちらかすとしわけるで素材を自动回収できる">
+                    <strong>北侧水车建议后期再处理</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#フワンテと伙伴になってゆめしまを解锁しよう">
+                    <strong>北侧铁栅栏需强化后再破坏</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#前期は気にしなくて良い要素">
+                    <strong>宝可梦修复任务建议稍后推进</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#入団チャレンジは通关后に進めるのが推荐">
+                    <strong>学会整地后再推进会更高效</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h3 id="入団チャレンジは通关后に進めるのが推荐" class="content-head level-3">推荐在入团挑战通关后再推进</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12363827/ff12ee1568932027ba1dff9586084f01.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>荒野城镇剧情推进过程中会开启重要委托“入团挑战”，而且后续主线推进基本绕不开它。由于所需素材不少，前期不用硬冲，通关后再集中补也可以。</p><div class="inline-links"><a class="inline-link" href="./767355.html">入团挑战攻略一览与奖励</a></div></div></section><h3 id="パサパサこうやの北側の水車は後から動かせる" class="content-head level-3">北侧水车建议后期再处理</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12374738/c505071536695ed93ac7ec44dd5eb3c9.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>城镇北侧的水车相关内容，建议等学会对应能力后再处理。通常在海边城镇通关后更适合回来推进。</p><div class="inline-links"><a class="inline-link" href="./768273.html">学会方法、效果与用法</a><a class="inline-link" href="./768708.html">水車回方制作方法回</a></div></div></section><h3 id="パサパサこうやの北の鉄柵は强化後に壊せる" class="content-head level-3">北侧铁栅栏需强化后再破坏</h3><section class="content-block paragraph-block"><div class="content-copy"><p>城镇北侧的铁栅栏需要在强化招式后才能破坏。推进到能制作对应料理后，再回来处理会更顺。</p><div class="inline-links"><a class="inline-link" href="./767900.html">居合斩学会方法、效果与用法</a><a class="inline-link" href="./767647.html">城镇收集要素汇总</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>铁栅栏后方还牵涉到幻之宝可梦相关内容，但这是偏支线的寄道要素，前期不用急着做。</p><div class="inline-links"><a class="inline-link" href="./767550.html">位置</a><a class="inline-link" href="https://game8.jp/pocoapokemon/768137">查看原文 768137</a><a class="inline-link" href="./767550.html">位置</a></div></div></section><h3 id="宝可梦センターの修復は後回しでも進行できる" class="content-head level-3">宝可梦修复任务建议稍后推进</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364552/caacccda80f0a4ae15b7dd0103477dd7.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>重要委托“宝可梦修复”是主线推进所需内容，建议尽早做。完成后会解锁 3D，整体便利性会提升很多。</p><div class="inline-links"><a class="inline-link" href="./767420.html">宝可梦修复方法</a></div></div></section><h3 id="整地はころがる習得後に進めると高效" class="content-head level-3">学会整地后再推进会更高效</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12374106/118b742fb9915773eb2dba234b84f77d.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>如果打算认真调整城镇景观或地形，建议等学会整地后再集中推进。整地能力会明显提升整体作业效率。</p><div class="inline-links"><a class="inline-link" href="./768259.html">学会方法、效果与用法</a></div></div></section><h2 id="相关文章" class="content-head level-2">相关文章</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon">
+                    <strong>返回《Pokémon Pokopia》攻略首页</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h3 id="人気記事・よく読まれている記事" class="content-head level-3">热门文章与常读文章</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767321.html">
+                    <strong>新手需要记住的事</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767308.html">
+                    <strong>每日要素与每天该做的事汇总</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767517.html">
+                    <strong>无法挽回的要素</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767357.html">
+                    <strong>商店购买推荐</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767482.html">
+                    <strong>传说宝可梦一览与获取方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767692.html">
+                    <strong>料理制作方法一览与推荐食谱（全 24 种）</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767551.html">
+                    <strong>环境高效提升方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767901.html">
+                    <strong>通关后要素</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767794.html">
+                    <strong>位置一览与获取方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767793.html">
+                    <strong>位置一览与获取方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767789.html">
+                    <strong>发型一览与获取方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768188.html">
+                    <strong>一人称一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768328.html">
+                    <strong>图鉴埋高效方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767275.html">
+                    <strong>一览领取方</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h3 id="多人游玩相关文章" class="content-head level-3">多人游玩相关文章</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767437.html">
+                    <strong>多人游玩方法与解锁条件</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767586.html">
+                    <strong>城镇前往方法与解锁条件</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768618.html">
+                    <strong>岛屿前往方法与建造方式</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768642.html">
+                    <strong>方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./764574.html">
+                    <strong>共享通信方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./770185.html">
+                    <strong>官方岛屿前往方法与地址一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769945.html">
+                    <strong>宝可梦信息局地下前往方法家具推荐</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./770192.html">
+                    <strong>EIKO推荐地址</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./772070.html">
+                    <strong>岛推荐地址</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768993.html">
+                    <strong>攻略一览与奖励(全8种)</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768713.html">
+                    <strong>种類花咲攻略与奖励</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768960.html">
+                    <strong>野菜同时育攻略与奖励</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769005.html">
+                    <strong>攻略与奖励</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769065.html">
+                    <strong>道路攻略与奖励</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769094.html">
+                    <strong>電流流攻略与奖励</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769115.html">
+                    <strong>移动攻略与奖励</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769130.html">
+                    <strong>宝可梦攻略与奖励</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769154.html">
+                    <strong>宝可梦住攻略与奖励</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h3 id="活动の攻略記事" class="content-head level-3">活动攻略文章</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767520.html">
+                    <strong>活动一览举办时间</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768347.html">
+                    <strong>攻略推进方法举办时间</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h3 id="百变怪の招式解说記事" class="content-head level-3">百变怪招式说明文章</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767409.html">
+                    <strong>百变怪招式一览与学会方法、招式强化方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768019.html">
+                    <strong>水枪学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768189.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767900.html">
+                    <strong>居合斩学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768193.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768196.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768202.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768258.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768259.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768269.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768271.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768273.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768275.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768277.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768199.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h3 id="前期攻略推荐記事" class="content-head level-3">前期攻略推荐文章</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767333.html">
+                    <strong>日历修改与时间操作可以吗？</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767288.html">
+                    <strong>性别区别外观更改方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767305.html">
+                    <strong>木材获取方法与 PP 回复方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767463.html">
+                    <strong>持物所持上限增加方法背包拡張方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767358.html">
+                    <strong>刷钱高效方法收集方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767408.html">
+                    <strong>木材获取方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768278.html">
+                    <strong>？效果？</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768286.html">
+                    <strong>制作方法与推荐</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768295.html">
+                    <strong>收纳方法整理</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768336.html">
+                    <strong>取引推荐方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768282.html">
+                    <strong>7 个方便移动的方法与高效移动技巧</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768614.html">
+                    <strong>推荐同行宝可梦与带法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./771132.html">
+                    <strong>最新信息内容汇总</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./771062.html">
+                    <strong>方法种类</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767692.html">
+                    <strong>料理制作方法一览与推荐食谱（全 24 种）</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767639.html">
+                    <strong>农业高效玩法与农田建造方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768146.html">
+                    <strong>水源制作方法与用途作</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768195.html">
+                    <strong>天気変方影響</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768266.html">
+                    <strong>3D用法推荐解锁条件</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768339.html">
+                    <strong>位置一览与获取方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768274.html">
+                    <strong>供物效果与触发方式</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768352.html">
+                    <strong>集高效方法与奖励</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768365.html">
+                    <strong>宝可梦(消)時应对方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768708.html">
+                    <strong>水車回方制作方法回</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768985.html">
+                    <strong>设置推荐更改方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768268.html">
+                    <strong>暗方法与优点</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769074.html">
+                    <strong>操作方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769077.html">
+                    <strong>相机用法与查看方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769075.html">
+                    <strong>高台制作方法条件高</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769110.html">
+                    <strong>与奖励</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769112.html">
+                    <strong>植替方法树木移动方法？</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769153.html">
+                    <strong>朝夜何時？朝夜区别</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./771019.html">
+                    <strong>与奖励</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./771031.html">
+                    <strong>味道种类与食物一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./771035.html">
+                    <strong>发光地面查看方法与可以获得内容</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./771731.html">
+                    <strong>宝可梦移动可以吗？方法与步骤</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768968.html">
+                    <strong>回路制作方法回路組方</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767554.html">
+                    <strong>宝可梦气息查看方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768257.html">
+                    <strong>宝可梦出现方法与出现条件</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767513.html">
+                    <strong>提升方法与优点</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767516.html">
+                    <strong>稀有宝可梦高效寻找方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769001.html">
+                    <strong>同宝可梦会出现吗？姿区别宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768006.html">
+                    <strong>色区别宝可梦出现？</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769013.html">
+                    <strong>会进化吗？进化宝可梦出现方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769253.html">
+                    <strong>栖息地与成为伙伴的方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768197.html">
+                    <strong>開方与位置推荐？</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767420.html">
+                    <strong>宝可梦修复方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767510.html">
+                    <strong>次行？</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767324.html">
+                    <strong>增加方法与优点</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768602.html">
+                    <strong>提升方法与优点</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768180.html">
+                    <strong>電気通方電柱繋方</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768203.html">
+                    <strong>提升方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768406.html">
+                    <strong>船電気通方前往方法号</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767355.html">
+                    <strong>入团挑战攻略一览与奖励</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769080.html">
+                    <strong>相关条件</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./770249.html">
+                    <strong>隠部屋位置前往方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./770887.html">
+                    <strong>博物館前往方法与位置</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./770248.html">
+                    <strong>海大气息感発生条件起</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767302.html">
+                    <strong>住宅建造方法与建筑用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768198.html">
+                    <strong>家判定条件家制作方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767983.html">
+                    <strong>移动方法引越方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768702.html">
+                    <strong>素材收集方法置方</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768699.html">
+                    <strong>整地高效方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768973.html">
+                    <strong>屋根付方与优点</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769081.html">
+                    <strong>改築方法与优点</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769142.html">
+                    <strong>模様替方法注意点</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./771730.html">
+                    <strong>建筑建造方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768279.html">
+                    <strong>获取方法与增加方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768585.html">
+                    <strong>色風船制作方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768394.html">
+                    <strong>自販機(自动販売機)用法与位置</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768432.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768601.html">
+                    <strong>温泉位置？制作方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769376.html">
+                    <strong>岩石制作方法与破坏方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769158.html">
+                    <strong>素材集高效方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769926.html">
+                    <strong>烟花玉获取方法、用途与颜色一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769942.html">
+                    <strong>自动化方法</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h3 id="購入・プレイ前に気になること" class="content-head level-3">购买前须知</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/switch2/767398">
+                    <strong>评价评测</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767899.html">
+                    <strong>時間目安</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./764565.html">
+                    <strong>早期購入特典予約特典店舗特典汇总</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./764542.html">
+                    <strong>switch1可以吗？支持机型？</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767279.html">
+                    <strong>主角名字(官方名称)名字更改可以吗？</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767306.html">
+                    <strong>地形怎么刷初始？有云端岛吗？</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767801.html">
+                    <strong>存档方法切？</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768285.html">
+                    <strong>宝可梦連携可以吗？連携予定？</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769089.html">
+                    <strong>意味由来英語？</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>博物馆前往方法与位置</title>
+    <meta name="description" content="查看《Pokémon Pokopia》博物馆的位置、功能与可拾取道具。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/770887">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="https://game8.jp/pocoapokemon/768551">查看原文 768551</a></li><li><a href="./768275.html">学会方法、效果与用法</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="https://game8.jp/pocoapokemon/768551">查看原文 768551</a>
+          <small></small>
+        </li><li>
+          <a href="./768275.html">学会方法、效果与用法</a>
+          <small>学会方法、效果与用法</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#博物館の前往方法と位置">博物馆前往方法与位置</a></li><li><a href="#ゴツゴツ山の北側の洞窟の先にある">位于岩石山北侧洞窟深处</a></li><li><a href="#博物館でできること">博物馆里能做什么</a></li><li><a href="#コレクレーと出会える">可以遇见索财灵</a></li><li><a href="#てんじだいやカセキなどのアイテムを获取できる">可取得展示台与化石等道具</a></li><li><a href="#スタジオでびっくりばこを回収しておこう">记得回收惊吓箱</a></li><li><a href="#博物館の西側でじっけんセットを拾っておこう">去西侧拾取实验套装</a></li><li><a href="#博物館で拾えるアイテム">博物馆可拾取道具</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>博物馆前往方法与位置</h1>
+            <p class="sub-title">博物馆前往方法与位置</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.26 12:02</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>这页整理《Pokémon Pokopia》博物馆的所在位置、到达路线，以及馆内可取得的关键道具。想知道什么时候该去、进去后该拿什么，可以直接看这里。</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12404313/2066aeb69c2ec14e213cb79669971a86.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>博物馆位于岩石山北侧洞窟的更深处。除了能见到特定宝可梦外，这里也是回收展示台、化石与研究类道具的重要地点。</p><div class="inline-links"></div></div></section><h2 id="博物館の前往方法と位置" class="content-head level-2">博物馆前往方法与位置</h2><h3 id="ゴツゴツ山の北側の洞窟の先にある" class="content-head level-3">位于岩石山北侧洞窟深处</h3><section class="content-block paragraph-block"><div class="content-copy"><p>博物馆位于岩石山北侧洞窟的最深处，推进剧情后就能前往。途中需要越过障碍地形，因此最好先学会飞翔、居合斩、水枪等相关能力，再继续向前探索。</p><div class="inline-links"><a class="inline-link" href="./768275.html">飞翔学会方法、效果与用法</a><a class="inline-link" href="./768019.html">水枪学会方法、效果与用法</a><a class="inline-link" href="./767409.html">百变怪招式一览与学会方法、招式强化方法</a></div></div></section><h2 id="博物館でできること" class="content-head level-2">博物馆里能做什么</h2><h3 id="コレクレーと出会える" class="content-head level-3">可以遇见索财灵</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12402955/4c7c6d1f1bc66aa25c8d204283b673ff.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>到达岩石山的博物馆后，可以在这里遇见索财灵。和它对话后会登记到图鉴里，所以初次到访时不要忘记交谈。</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/767818">查看交换方法</a></div></div></section><h4 id="フシギなはねをレアアイテムと交換してくれる" class="content-head level-4">可用神奇羽毛交换稀有道具</h4><section class="content-block paragraph-block"><div class="content-copy"><p>完成对应委托后，索财灵会开始接受交换。之后可以用神奇羽毛交换部分稀有家具和掉落物，值得定期回来查看。</p><div class="inline-links"><a class="inline-link" href="./767977.html">神奇羽毛获取方法与用途</a><a class="inline-link" href="./768040.html">稀有掉落物获取方法与用途</a><a class="inline-link" href="./768432.html">稀有家具获取方法与用途</a></div></div></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./768432.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767977.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768040.html">
+                    <strong>稀有掉落物</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h3 id="てんじだいやカセキなどのアイテムを获取できる" class="content-head level-3">可取得展示台与化石等道具</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12402918/d3164e0a69446b8427eb8dd6dff4e4c9.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>博物馆内还能取得展示台、化石和部分研究相关道具。这些物品不仅能用来布置，也和部分栖息地展示与收集目标有关，来到这里时建议顺手全部回收。</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768630">展示相关道具</a><a class="inline-link" href="https://game8.jp/pocoapokemon/768538">化石相关道具</a></div></div></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768835">
+                    <strong>博物館</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767818">
+                    <strong>查看原文 767818</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767960">
+                    <strong>查看原文 767960</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768777">
+                    <strong>怨念騎士祭壇</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768682">
+                    <strong>查看原文 768682</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768776">
+                    <strong>忠誠騎士祭壇</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768683">
+                    <strong>查看原文 768683</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768775">
+                    <strong>展示台</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768174">
+                    <strong>查看原文 768174</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768774">
+                    <strong>展示台</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768173">
+                    <strong>查看原文 768173</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768773">
+                    <strong>展示台</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768172">
+                    <strong>查看原文 768172</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768772">
+                    <strong>展示台</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768171">
+                    <strong>查看原文 768171</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768771">
+                    <strong>展示台</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768170">
+                    <strong>查看原文 768170</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768770">
+                    <strong>展示台</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768169">
+                    <strong>查看原文 768169</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768769">
+                    <strong>展示台</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768168">
+                    <strong>查看原文 768168</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768768">
+                    <strong>展示台</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768167">
+                    <strong>查看原文 768167</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768767">
+                    <strong>展示台</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768166">
+                    <strong>查看原文 768166</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h3 id="スタジオでびっくりばこを回収しておこう" class="content-head level-3">记得回收惊吓箱</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12404433/033ff271f313d85df74b89434639df73.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768888">
+                    <strong>注意</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768315">
+                    <strong>查看原文 768315</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767945">
+                    <strong>查看原文 767945</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769068">
+                    <strong>查看原文 769068</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768796">
+                    <strong>箱</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769067">
+                    <strong>查看原文 769067</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768795">
+                    <strong>查看原文 768795</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767911">
+                    <strong>查看原文 767911</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767910">
+                    <strong>查看原文 767910</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>惊吓箱位于博物馆一层右后方的房间里，属于来到这里时很容易漏拿的重要道具。它对收集与布置都有帮助，因此建议在第一次探索时就顺手回收。</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768423">惊吓箱获取方法与用途</a></div></div></section><h3 id="博物館の西側でじっけんセットを拾っておこう" class="content-head level-3">去西侧拾取实验套装</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768800">
+                    <strong>実験</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767924">
+                    <strong>查看原文 767924</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768798">
+                    <strong>研究者</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767923">
+                    <strong>查看原文 767923</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>博物馆西侧还能捡到实验套装，这类道具和部分栖息地建设、通电装置与回路布置有关。后续做研究相关设施时会派上用场，所以建议提早拿走。</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768798">研究者相关道具</a><a class="inline-link" href="./768968.html">回路制作方法与组法</a></div></div></section><h2 id="博物館で拾えるアイテム" class="content-head level-2">博物馆可拾取道具</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768579">
+                    <strong>查看原文 768579</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769035">
+                    <strong>查看原文 769035</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/771997">
+                    <strong>树木</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/771996">
+                    <strong>树木</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/771995">
+                    <strong>查看原文 771995</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768574">
+                    <strong>查看原文 768574</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768572">
+                    <strong>查看原文 768572</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/771994">
+                    <strong>查看原文 771994</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770766">
+                    <strong>查看原文 770766</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770765">
+                    <strong>查看原文 770765</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770764">
+                    <strong>查看原文 770764</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770763">
+                    <strong>查看原文 770763</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770760">
+                    <strong>查看原文 770760</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770757">
+                    <strong>树木</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768201.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768539">
+                    <strong>查看原文 768539</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768538">
+                    <strong>查看原文 768538</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768630">
+                    <strong>查看原文 768630</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768508">
+                    <strong>查看原文 768508</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768457">
+                    <strong>查看原文 768457</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768423">
+                    <strong>查看原文 768423</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768420">
+                    <strong>查看原文 768420</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769183">
+                    <strong>查看原文 769183</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769182">
+                    <strong>查看原文 769182</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769181">
+                    <strong>查看原文 769181</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769030">
+                    <strong>查看原文 769030</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768661">
+                    <strong>查看原文 768661</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768653">
+                    <strong>查看原文 768653</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769014">
+                    <strong>查看原文 769014</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769078">
+                    <strong>查看原文 769078</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770623">
+                    <strong>查看原文 770623</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770604">
+                    <strong>查看原文 770604</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770583">
+                    <strong>查看原文 770583</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770573">
+                    <strong>查看原文 770573</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770555">
+                    <strong>查看原文 770555</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770443">
+                    <strong>查看原文 770443</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770280">
+                    <strong>查看原文 770280</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

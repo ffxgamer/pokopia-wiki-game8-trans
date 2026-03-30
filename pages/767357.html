@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>商店购买推荐</title>
+    <meta name="description" content="查看原文推荐路线、优先级与搭配建议。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/767357">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767463.html">持物所持上限增加方法背包拡張方法</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767463.html">持物所持上限增加方法背包拡張方法</a>
+          <small>持物所持上限增加方法背包拡張方法</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#ショップの商店购买推荐アイテム">商店购买推荐</a></li><li><a href="#背包整理のコツを最优先で購入しよう">背包整理最优先購入</a></li><li><a href="#サブ背包も購入しておくと便利">背包購入便利</a></li><li><a href="#制作だいのレシピも解锁しておこう">制作解锁</a></li><li><a href="#余裕ができたら購入したいアイテム">余裕購入</a></li><li><a href="#ポイントアップ-pp上限アップ">(PP上限)</a></li><li><a href="#本日限りの商品の更新時間">本日限商品更新時間</a></li><li><a href="#am5-00時に更新される">AM5:00時更新</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>商店购买推荐</h1>
+            <p class="sub-title">商店购买推荐</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.27 05:36</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》商店购买推荐。店買道具当然，余裕買说明。 宝可梦推荐想了解的话可以参考本文</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365441/e26a281b67b4a33fda0cb71ed190e5ed.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>《Pokémon Pokopia》商店购买推荐。店買道具当然，余裕買说明</p><div class="inline-links"></div></div></section><h2 id="ショップの商店购买推荐アイテム" class="content-head level-2">商店购买推荐</h2><h3 id="背包整理のコツを最优先で購入しよう" class="content-head level-3">背包整理最优先購入</h3><section class="content-block paragraph-block"><div class="content-copy"><p>Pokémon Pokopia持物増。背包拡張“背包整理”最优先買。快適直結。何优先可能限早購入吧</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>特，人形渡行貴重多拾。背包容量少状態向推荐</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767482.html">传说宝可梦一览与获取方法</a></div></div></section><h3 id="サブ背包も購入しておくと便利" class="content-head level-3">背包購入便利</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365694/ee4ce9e6377ca73d107cffa296fd704e.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>次点背包購入便利。背包R押込“背包”，画面下常背包中身表示。PP回复使入，背包開使，游玩</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767463.html">持物所持上限增加方法背包拡張方法</a></div></div></section><h3 id="制作だいのレシピも解锁しておこう" class="content-head level-3">制作解锁</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365701/c82ac5b3e53e6a720de8c5196efefb6a.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>“制作”50安価，×2使制作台作。元々存在制作台背包動可以，好位置制作台増便利。購入作</p><div class="inline-links"></div></div></section><h4 id="制作台持ち歩き都度出して使おう" class="content-head level-4">制作台持歩都度出使</h4><section class="content-block paragraph-block"><div class="content-copy"><p>制作台常数個持歩必要場面出使推荐。制作台行来時間節約</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./768286.html">制作方法与推荐</a></div></div></section><h2 id="余裕ができたら購入したいアイテム" class="content-head level-2">余裕購入</h2><h3 id="ポイントアップ-pp上限アップ" class="content-head level-3">(PP上限)</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365698/efe6771819a6cdf154abec20f4f98f74.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>PP最大値上，回复手間減。至位置等树木，PP回复可以获得困。購入优先度高。回复手間減購入吧</p><div class="inline-links"><a class="inline-link" href="./767305.html">获取方法与PP回复方法</a></div></div></section><h3 id="ポケセンたてなおしキット" class="content-head level-3"></h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365586/ee3d9c00d7e96a72fdf6b78c49bbbaf5.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>宝可梦復活必要。“宝可梦修复！”購入必須，宝可梦直次進。余裕購入</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767420.html">宝可梦修复方法</a></div></div></section><h2 id="本日限りの商品の更新時間" class="content-head level-2">本日限商品更新時間</h2><h3 id="am5-00時に更新される" class="content-head level-3">AM5:00時更新</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12382806/dd283034363e37d80492d87e42294890.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>本日限商品，毎朝5時更新。环境応増，环境少上</p><div class="inline-links"><a class="inline-link" href="./767551.html">环境高效提升方法</a></div></div></section><h4 id="ショップデーは限定アイテムが販売" class="content-head level-4">限定販売</h4><section class="content-block paragraph-block"><div class="content-copy"><p>限定販売。举办曜日一定，可能毎日确认推荐。金余裕場合，限定購入</p><div class="inline-links"><a class="inline-link" href="./767358.html">刷钱高效方法收集方法</a></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>躲猫猫玩法技巧与奖励</title>
+    <meta name="description" content="查看《Pokémon Pokopia》躲猫猫的通关技巧、游玩方法与奖励。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/771019">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./768269.html">学会方法、效果与用法</a></li><li><a href="https://game8.jp/pocoapokemon/772059">查看原文 772059</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./768269.html">学会方法、效果与用法</a>
+          <small>学会方法、效果与用法</small>
+        </li><li>
+          <a href="https://game8.jp/pocoapokemon/772059">查看原文 772059</a>
+          <small></small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#かくれおにの攻略・コツ">躲猫猫攻略技巧</a></li><li><a href="#おにに見つからずにパソコンを調べるとクリア">别被鬼发现并调查电脑</a></li><li><a href="#ある程度までは一気に近づこう">先一口气接近目标</a></li><li><a href="#モノまねで変身してこっそりパソコンを調べる">用模仿变身后悄悄调查</a></li><li><a href="#かくれおにの奖励">奖励</a></li><li><a href="#たべごろニンジンやほしのすなが貰える">可获得熟成胡萝卜与星砂</a></li><li><a href="#かくれおにの遊び方">玩法</a></li><li><a href="#ゾロアのおねがいごとをクリアした後に对话しかける">完成索罗亚委托后对话</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>躲猫猫玩法技巧与奖励</h1>
+            <p class="sub-title">躲猫猫玩法技巧与奖励</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.26 12:02</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>这里整理《Pokémon Pokopia》小游戏“躲猫猫”的玩法、过关技巧与可获得奖励。想知道怎么不被发现地摸到电脑，或者奖励值不值得刷，可以参考这页。</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12405787/6eeefceafdfd29c9c0900941ed4f08a1.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>躲猫猫是需要避开巡逻宝可梦视线、偷偷摸到目标电脑的小游戏。只要掌握接近时机和变身技巧，难度并不高。</p><div class="inline-links"></div></div></section><h2 id="かくれおにの攻略・コツ" class="content-head level-2">躲猫猫攻略技巧</h2><h3 id="おにに見つからずにパソコンを調べるとクリア" class="content-head level-3">别被鬼发现并调查电脑</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12405776/615304f64e65afcf24d9c7a694f653fd.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>本玩法的目标是在不被巡逻宝可梦发现的情况下摸到电脑并完成调查。只要看到敌方头上出现感叹号，就代表快要暴露了，因此要优先躲进视线死角。</p><div class="inline-links"></div></div></section><h3 id="ある程度までは一気に近づこう" class="content-head level-3">先一口气接近目标</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12405778/4a918d33e1f08edff9358980a730510e.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>在还没进入对方警戒范围前，可以先大胆地快速接近目标区域。尤其隔着河流或障碍时，先用移动招式抢位，往往比慢慢挪更安全。</p><div class="inline-links"><a class="inline-link" href="./768269.html">相关招式学会方法、效果与用法</a></div></div></section><h3 id="モノまねで変身してこっそりパソコンを調べる" class="content-head level-3">用模仿变身后悄悄调查</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12405779/186c46304a6d07585104ac5eb74237be.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>接近巡逻宝可梦后，可以活用“模仿”变身成附近物体或宝可梦，再偷偷靠近电脑。处于伪装状态时更不容易被识破，是最稳妥的通关方式。</p><div class="inline-links"></div></div></section><h4 id="モノまねして動かなければ宝可梦は離れていく" class="content-head level-4">变身后停着不动，巡逻宝可梦会离开</h4><section class="content-block paragraph-block"><div class="content-copy"><p>如果变身途中被巡逻宝可梦盯上，先停在原地别动，等它们走远后再继续前进即可。重复几次这个流程，通常就能稳定通关。</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>变身时外观不必太讲究，只要别在空旷处移动得太明显就行。</p><div class="inline-links"></div></div></section><h2 id="かくれおにの奖励" class="content-head level-2">奖励</h2><h3 id="たべごろニンジンやほしのすなが貰える" class="content-head level-3">可获得熟成胡萝卜与星砂</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12405775/d444341becbb846a05296a3c85da043a.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>完成躲猫猫后可以拿到熟成胡萝卜、星砂等奖励。奖励数量会随你没被发现的次数表现而变化，想刷收益的话尽量以“全程不暴露”为目标。</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/772059">熟成胡萝卜相关页面</a><a class="inline-link" href="https://game8.jp/pocoapokemon/768586">星砂相关页面</a></div></div></section><h2 id="かくれおにの遊び方" class="content-head level-2">玩法</h2><h3 id="ゾロアのおねがいごとをクリアした後に对话しかける" class="content-head level-3">完成索罗亚委托后对话</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12405777/d2a88f3e1d78d274cb7403e7830b14b0.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>先完成索罗亚相关委托并学会对应能力，之后再去和它对话，就能开始游玩躲猫猫。</p><div class="inline-links"><a class="inline-link" href="./768271.html">相关招式学会方法、效果与用法</a><a class="inline-link" href="https://game8.jp/pocoapokemon/767806">索罗亚相关页面</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/767806">查看索罗亚栖息地与相关信息</a></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

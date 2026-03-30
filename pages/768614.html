@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>推荐同行宝可梦与带法</title>
+    <meta name="description" content="查看原文步骤、条件与注意事项。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/768614">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="https://game8.jp/pocoapokemon/768551">溶鉱炉</a></li><li><a href="./768335.html">高效获取方法与用途</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="https://game8.jp/pocoapokemon/768551">溶鉱炉</a>
+          <small>溶鉱炉</small>
+        </li><li>
+          <a href="./768335.html">高效获取方法与用途</a>
+          <small>高效获取方法与用途</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#連れ歩きの推荐宝可梦">連歩推荐宝可梦</a></li><li><a href="#連れ歩きの方法">連歩方法</a></li><li><a href="#宝可梦に向かって上キーを押す">宝可梦向上押</a></li><li><a href="#宝可梦に对话しかけて-いっしょにいこう-を选择">宝可梦话选择</a></li><li><a href="#お腹が減っている場合は食べ物をあげよう">腹減場合食物</a></li><li><a href="#連れ歩きを終了させるには上キー長押し">連歩終了上长按</a></li><li><a href="#はぐれてしまった場合はその場に留まる">場合場留</a></li><li><a href="#連れ歩きのメリット">連歩</a></li><li><a href="#宝可梦ごとの-得意なこと-で助けてくれる">宝可梦“得意”助</a></li><li><a href="#飞翔やテレポートでファストトラベルできる">飞翔</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>推荐同行宝可梦与带法</h1>
+            <p class="sub-title">推荐同行宝可梦与带法</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.27 05:32</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》推荐同行宝可梦与带法文章。連歩也说明了。 宝可梦連歩想了解的话可以参考本文</p></div>
+          </div>
+          <div class="content-wrap"><h2 id="連れ歩きの推荐宝可梦" class="content-head level-2">連歩推荐宝可梦</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767875">
+                    <strong>查看原文 767875</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767525.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767878">
+                    <strong>查看原文 767878</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767891">
+                    <strong>查看原文 767891</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767542.html">
+                    <strong>飞翔效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768321">
+                    <strong>查看原文 768321</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767549.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768551">
+                    <strong>溶鉱炉</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768335.html">
+                    <strong>高效获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768068.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767949">
+                    <strong>查看原文 767949</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767547.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767542.html">
+                    <strong>飞翔效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767825">
+                    <strong>查看原文 767825</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767548.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768206">
+                    <strong>查看原文 768206</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767538.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767986">
+                    <strong>查看原文 767986</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768262.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767856">
+                    <strong>查看原文 767856</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767528.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>連歩宝可梦，得意中，小型飛行可以宝可梦推荐。 ，宝可梦1種類場合</p><div class="inline-links"><a class="inline-link" href="./768262.html">效果宝可梦一览</a><a class="inline-link" href="./767528.html">效果宝可梦一览</a></div></div></section><h2 id="連れ歩きの方法" class="content-head level-2">連歩方法</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="#小型かつ飛行できる宝可梦ははぐれにくい">
+                    <strong>宝可梦向上押</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#連れ歩きのメリット">
+                    <strong>宝可梦话选择</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#宝可梦ごとの-得意なこと-で助けてくれる">
+                    <strong>腹減場合食物</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#飞翔やテレポートでファストトラベルできる">
+                    <strong>連歩終了上长按</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#すみかを引っ越しさせてあげられる">
+                    <strong>場合場留</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h3 id="宝可梦に向かって上キーを押す" class="content-head level-3">宝可梦向上押</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12379097/5bdaff374e761b3d77c31b75ead0c4f3.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>連歩宝可梦前方向上押一緒行動。宝可梦歩速違。着宝可梦。目的地遠場合到着待</p><div class="inline-links"></div></div></section><h4 id="連れ歩けるのは5匹まで" class="content-head level-4">連歩5匹</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12379150/dbc6cb101f3599fe6e1d640b9498b380.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>一緒連歩可以5匹。5匹連状態新誘断，请注意</p><div class="inline-links"></div></div></section><h3 id="宝可梦に对话しかけて-いっしょにいこう-を选择" class="content-head level-3">宝可梦话选择</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12379106/19300e60859596d1247f89983808d5e2.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>宝可梦话选择連歩可以</p><div class="inline-links"></div></div></section><h3 id="お腹が減っている場合は食べ物をあげよう" class="content-head level-3">腹減場合食物</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12379108/842a1417f33b87e14b48ca62dcc621ea.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>宝可梦腹減連歩誘断。断，食物渡</p><div class="inline-links"></div></div></section><h3 id="連れ歩きを終了させるには上キー長押し" class="content-head level-3">連歩終了上长按</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12388811/f1c20260c14435bc58991c8973c63eb4.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>連歩終了時，上长按吧。現在連宝可梦連歩場終。遠位置連歩終了場合，请注意</p><div class="inline-links"></div></div></section><h4 id="個別に終わらせたい場合は对话しかける" class="content-head level-4">個別終場合对话</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12388810/87bb608dbd1f865b076641c371e1b181.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>個別话選，话宝可梦連歩終了。連歩宝可梦場合使用吧</p><div class="inline-links"></div></div></section><h3 id="はぐれてしまった場合はその場に留まる" class="content-head level-3">場合場留</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12388877/ee0d0ceac755bfc0184c53fd14dc6b3e.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>道途切，連歩宝可梦狭通場合，連歩最中。宝可梦場留，戻</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>宝可梦連歩際，道繋，障害物壊広空間確保。宝可梦歩道確保</p><div class="inline-links"></div></div></section><h4 id="小型かつ飛行できる宝可梦ははぐれにくい" class="content-head level-4">小型飛行宝可梦</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12388876/27660154f3c0f25d95fd405735edfecb.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>連歩宝可梦大型場合，主角通宝可梦通。飛行宝可梦場合，道途中来場合。連歩際，小通位置多，飛行程度地形無視宝可梦</p><div class="inline-links"></div></div></section><h2 id="連れ歩きのメリット" class="content-head level-2">連歩</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="#個別に終わらせたい場合は对话しかける">
+                    <strong>宝可梦“得意”助</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#はぐれてしまった場合はその場に留まる">
+                    <strong>飞翔</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#小型かつ飛行できる宝可梦ははぐれにくい">
+                    <strong>引越</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#連れ歩きのメリット">
+                    <strong>別带在身边</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h3 id="宝可梦ごとの-得意なこと-で助けてくれる" class="content-head level-3">宝可梦“得意”助</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12378981/dec625cc7e56f4efcd87bdeebf325b7a.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>宝可梦連歩，“得意”助。例焚火火場合，溶鉱炉铁銅欲時得意宝可梦連，得意宝可梦連時持埋探</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767402.html">宝可梦图鉴一览（全 303 种）</a></div></div></section><h3 id="飞翔やテレポートでファストトラベルできる" class="content-head level-3">飞翔</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364231/8d0efdeacc3621a44c795eb8733845ce.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>得意“飞翔”，状態宝可梦飛，家以外手段活用可以。頻繁行位置家離位置場合，家目的地近宝可梦飛早。高效移动因此可以推荐</p><div class="inline-links"></div></div></section><h3 id="すみかを引っ越しさせてあげられる" class="content-head level-3">引越</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12378997/e634167de0ee591f2607f6d3d3119b5e.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>宝可梦家別栖息地带在身边，引越可以。好环境家引越。住心地上時推荐</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767983.html">移动方法引越方法</a></div></div></section><h3 id="別のエリアにも連れて行ける" class="content-head level-3">別带在身边</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12379172/4978a1e39acc29379ed39f2df96adb9f.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>宝可梦連歩，可以前往别的梦岛可以。家建 可以宝可梦場合便利</p><div class="inline-links"><a class="inline-link" href="./767545.html">效果宝可梦一览</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>別連宝可梦引越可以。得意偏場合，別引越検討</p><div class="inline-links"></div></div></section><h4 id="おねがいごとが途中だと別エリアに行けない" class="content-head level-4">途中可以前往别的梦岛</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12379416/1a544e414d937ae519eb7adb20765e6e.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>願事途中止宝可梦，別带在身边。連時頼願事确认</p><div class="inline-links"></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>高台制作方法条件高</title>
+    <meta name="description" content="查看原文步骤、条件与注意事项。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/769075">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="https://game8.jp/pocoapokemon/768493">風力発電機(風力)</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="https://game8.jp/pocoapokemon/768493">風力発電機(風力)</a>
+          <small>風力発電機(風力)</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#高台-高いところ-の制作方法">高台(高)制作方法</a></li><li><a href="#風が吹くエフェクトが出る高さまでブロックを積む">風吹出高積</a></li><li><a href="#城镇の高所を利用する">城镇高所利用</a></li><li><a href="#高台-高いところ-になる条件">高台(高)条件</a></li><li><a href="#一定の高さを越えていれば高台になる">一定高越高台</a></li><li><a href="#高台-高いところ-を作るメリット">高台(高)作</a></li><li><a href="#高台で作れる生息地がある">高台作栖息地</a></li><li><a href="#風力発電機の発電量が増える">風力発電機発電量増</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>高台制作方法条件高</h1>
+            <p class="sub-title">高台制作方法条件高</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.26 12:02</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》高台制作方法条件文章。高栖息地掲載。 宝可梦高台制作方法条件知方参考</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12383266/ff1cac5b22bcce5bc0998279dd7abaa7.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>《Pokémon Pokopia》高台制作方法条件文章。高栖息地掲載。 宝可梦高台制作方法条件知方参考</p><div class="inline-links"></div></div></section><h2 id="高台-高いところ-の制作方法" class="content-head level-2">高台(高)制作方法</h2><h3 id="風が吹くエフェクトが出る高さまでブロックを積む" class="content-head level-3">風吹出高積</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12382958/2b1de211ed0d08a4165ef2000b2ee3cf.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>高台制作方法，風吹出高積作可以。上記宝可梦初期位置高台高汇总，参考</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>洞窟内風出，高条件満洞窟内高台</p><div class="inline-links"></div></div></section><h3 id="城镇の高所を利用する" class="content-head level-3">城镇高所利用</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12382963/6de29b31a3551ea853daff4c24258c2d.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>高台，城镇高所利用簡単作可以。城镇中心地少離，城镇高所用意高台作</p><div class="inline-links"></div></div></section><h2 id="高台-高いところ-になる条件" class="content-head level-2">高台(高)条件</h2><h3 id="一定の高さを越えていれば高台になる" class="content-head level-3">一定高越高台</h3><section class="content-block paragraph-block"><div class="content-copy"><p>高台条件，一定高越高台判定。高台判定位置立風会触发。各城镇宝可梦高高台数也说明了，参考</p><div class="inline-links"></div></div></section><h4 id="下限から約45マス以上の高さが高台になる" class="content-head level-4">下限約45以上高高台</h4><section class="content-block paragraph-block"><div class="content-copy"><p>高台詳細条件，下限(强化壊)数約45以上高高台判定。下限高城镇変，浮岛条件異</p><div class="inline-links"></div></div></section><h2 id="高台-高いところ-を作るメリット" class="content-head level-2">高台(高)作</h2><h3 id="高台で作れる生息地がある" class="content-head level-3">高台作栖息地</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768954">
+                    <strong>高台草丛</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767891">
+                    <strong>查看原文 767891</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767890">
+                    <strong>查看原文 767890</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767878">
+                    <strong>查看原文 767878</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768248">
+                    <strong>查看原文 768248</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768948">
+                    <strong>高台花畑</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768255">
+                    <strong>查看原文 768255</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767973">
+                    <strong>查看原文 767973</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768920">
+                    <strong>查看原文 768920</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767893">
+                    <strong>查看原文 767893</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768909">
+                    <strong>高台黄色草丛</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767949">
+                    <strong>查看原文 767949</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768309">
+                    <strong>查看原文 768309</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767961">
+                    <strong>查看原文 767961</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768861">
+                    <strong>高台赤草丛</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767934">
+                    <strong>查看原文 767934</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767829">
+                    <strong>查看原文 767829</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768233">
+                    <strong>查看原文 768233</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768825">
+                    <strong>高台草丛</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768207">
+                    <strong>查看原文 768207</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768205">
+                    <strong>查看原文 768205</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768206">
+                    <strong>查看原文 768206</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768208">
+                    <strong>查看原文 768208</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768820">
+                    <strong>水边小舟</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767904">
+                    <strong>查看原文 767904</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768794">
+                    <strong>絶景顔</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768617">
+                    <strong>查看原文 768617</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768615">
+                    <strong>查看原文 768615</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>Pokémon Pokopia，高台作栖息地。高台上記栖息地作，宝可梦图鉴完成</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></div></div></section><h3 id="風力発電機の発電量が増える" class="content-head level-3">風力発電機発電量増</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12373010/079922bde478912d4cf55fbb7a2e790c.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>高台放置通常発電量増。風力発電機放置発電可以，多機械動場合高台作放置吧</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768493">風力発電機(風力)</a><a class="inline-link" href="./768180.html">電気通方電柱繋方</a></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

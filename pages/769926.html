@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>花火玉获取方法与用途色一览</title>
+    <meta name="description" content="查看原文步骤、条件与注意事项。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/769926">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./768640.html">获取方法与用途</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./768640.html">获取方法与用途</a>
+          <small>获取方法与用途</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#花火玉の获取方法・制作方法">花火玉获取方法制作方法</a></li><li><a href="#制作で作成する">制作作成</a></li><li><a href="#ショップの本日限りの商品で購入する">本日限商品購入</a></li><li><a href="#はなびだまの使い道">使道</a></li><li><a href="#ボルケニオンを仲間にできる">仲間</a></li><li><a href="#うちあげつつで花火を上げる">花火上</a></li><li><a href="#花火玉の種類一览">花火玉种類一览</a></li><li><a href="#花火玉は5種類ある">花火玉5种類</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>花火玉获取方法与用途色一览</h1>
+            <p class="sub-title">花火玉获取方法与用途色一览</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.26 12:02</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》花火玉获取方法与用途文章。花火玉获取方法使道也说明了。 宝可梦花火玉获取方法与用途想了解的话可以参考本文</p></div>
+          </div>
+          <div class="content-wrap"><h2 id="花火玉の获取方法・制作方法" class="content-head level-2">花火玉获取方法制作方法</h2><h3 id="制作で作成する" class="content-head level-3">制作作成</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770657">
+                    <strong>查看原文 770657</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/772042">
+                    <strong>查看原文 772042</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768302.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768267.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770661">
+                    <strong>查看原文 770661</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/772042">
+                    <strong>查看原文 772042</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768302.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768267.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770660">
+                    <strong>查看原文 770660</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/772042">
+                    <strong>查看原文 772042</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768302.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768267.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770659">
+                    <strong>查看原文 770659</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/772042">
+                    <strong>查看原文 772042</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768302.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768267.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770658">
+                    <strong>查看原文 770658</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/772042">
+                    <strong>查看原文 772042</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768302.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768267.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>花火玉，制作台作成可以获得。材料必要，材料使用色応全5種類花火玉作可以</p><div class="inline-links"><a class="inline-link" href="./768640.html">获取方法与用途</a><a class="inline-link" href="./767405.html">全道具一览（共 714 种）</a></div></div></section><h4 id="レシピはゴツゴツ山の剧情で获取" class="content-head level-4">山剧情可以获得</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12398252/e3489c362b7f643f3afb799772833aae.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>花火玉(全5種)， 剧情際可以获得。同时手入</p><div class="inline-links"><a class="inline-link" href="./767647.html">城镇收集要素汇总</a><a class="inline-link" href="https://game8.jp/pocoapokemon/768428">查看原文 768428</a><a class="inline-link" href="./767309.html">城镇攻略流程2</a></div></div></section><h4 id="えのぐは-つぶす-が得意な宝可梦にきのみを渡す" class="content-head level-4">得意宝可梦渡</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12379121/ef6ae745d89b08ecd4b638b39b6e16c3.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>得意宝可梦 加工可以获得</p><div class="inline-links"><a class="inline-link" href="./768640.html">获取方法与用途</a><a class="inline-link" href="./767537.html">效果宝可梦一览</a><a class="inline-link" href="./768279.html">获取方法增加方法</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>日替商品並。見際商店购买推荐</p><div class="inline-links"><a class="inline-link" href="./767357.html">商店购买推荐</a><a class="inline-link" href="./768640.html">获取方法与用途</a></div></div></section><h3 id="ショップの本日限りの商品で購入する" class="content-head level-3">本日限商品購入</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12398262/86dba65daf12595272bd38f799d3dcbc.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>花火玉自分制作以外，“日替商品”並。毎日確実並， 手間省早欲場合，見購入良</p><div class="inline-links"><a class="inline-link" href="./768286.html">制作方法与推荐</a><a class="inline-link" href="./767357.html">商店购买推荐</a></div></div></section><h2 id="はなびだまの使い道" class="content-head level-2">使道</h2><h3 id="ボルケニオンを仲間にできる" class="content-head level-3">仲間</h3><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">1</div>
+              <div class="flow-step-body">
+                <h5>城镇剧情</h5>
+                <img class="content-image" src="https://img.game8.jp/12366841/239b2231e02dc0f40863e1aa8bab1c63.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>城镇出会。城镇剧情終了登場。剧情条件</p><div class="inline-links"><a class="inline-link" href="./767309.html">城镇攻略流程2</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">2</div>
+              <div class="flow-step-body">
+                <h5>100点開</h5>
+                
+                <div class="content-copy"><p>提升方法 ↑CD渡 古代遗物放置 得意宝可梦連 一部家具放置 料理入 100点開。上方法上記通，特大落物手入家具放置上。方法推荐。 ，“鍋”必要，100購入可以</p><div class="inline-links"><a class="inline-link" href="./768602.html">提升方法与优点</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">3</div>
+              <div class="flow-step-body">
+                <h5>花火打上</h5>
+                <img class="content-image" src="https://img.game8.jp/12398974/a682b8a5c7dd14ecabf5d07049ca570e.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12365947/64b99fa42221c2335c9fde6ea06dd1ee.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12365955/866d597ffda1a0d4a52c4d41846cfe8c.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12365959/dbaca827f23c62fe761318ceb89671d4.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>必要素材 大 小 ×1 ×1 ×1 ×1 ×1 ×1 ×1 ※花火玉色問題。 举办，中入，花火打上。 ，得意宝可梦着火出現，必自分着火吧</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768428">查看原文 768428</a><a class="inline-link" href="./768061.html">高效获取方法与用途</a><a class="inline-link" href="./767690.html">(材树木)高效收集方法与用途</a><a class="inline-link" href="./768291.html">获取方法与用途</a><a class="inline-link" href="https://game8.jp/pocoapokemon/770657">查看原文 770657</a><a class="inline-link" href="https://game8.jp/pocoapokemon/772042">查看原文 772042</a><a class="inline-link" href="./768302.html">获取方法与用途</a><a class="inline-link" href="./768267.html">获取方法与用途</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">4</div>
+              <div class="flow-step-body">
+                <h5>出现</h5>
+                <img class="content-image" src="https://img.game8.jp/12398168/741f41727d2ee6ac89bb43b0882f7e94.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>花火打上，挟出現。出現对话，仲間可以</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block paragraph-block"><div class="content-copy"><p>花火玉，幻宝可梦仲間際。特定条件満状態“花火玉”使花火打上，出現仲間可以</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/767807">查看原文 767807</a><a class="inline-link" href="https://game8.jp/pocoapokemon/768428">查看原文 768428</a><a class="inline-link" href="https://game8.jp/pocoapokemon/767807">▶︎出现位置仲間方法查看</a></div></div></section><h3 id="うちあげつつで花火を上げる" class="content-head level-3">花火上</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12399786/4bc8ca63fdb902f1f4d6b68554398546.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>花火玉，入打上可以。中入花火玉種類(色)応，打上花火色変化</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768428">查看原文 768428</a><a class="inline-link" href="https://game8.jp/pocoapokemon/768428">查看获取方法与用途查看</a></div></div></section><h2 id="花火玉の種類一览" class="content-head level-2">花火玉种類一览</h2><h3 id="花火玉は5種類ある" class="content-head level-3">花火玉5种類</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770658">
+                    <strong>查看原文 770658</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768293.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770660">
+                    <strong>查看原文 770660</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/772055">
+                    <strong>查看原文 772055</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770659">
+                    <strong>查看原文 770659</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/772054">
+                    <strong>查看原文 772054</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770661">
+                    <strong>查看原文 770661</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/772057">
+                    <strong>查看原文 772057</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770657">
+                    <strong>查看原文 770657</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>花火玉全5種類。作成時必要色，打上際花火色異</p><div class="inline-links"><a class="inline-link" href="./768640.html">获取方法与用途</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>宝可梦加工際，渡別一定確率新增可以获得。毎回確定，集際根気加工委托吧</p><div class="inline-links"></div></div></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768279.html">
+                    <strong>获取方法增加方法</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h4 id="ももいろ・みずいろ・くろの花火玉は作れない" class="content-head level-4">花火玉作</h4><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768640.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>花火玉作成際，使用。3色花火玉材料， 作際，別用途活用吧</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/767856">查看原文 767856</a><a class="inline-link" href="./768585.html">色風船制作方法与用途</a><a class="inline-link" href="./768585.html">色風船制作方法与用途</a></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

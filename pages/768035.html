@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>传说与幻之宝可梦一览</title>
+    <meta name="description" content="查看原文清单、数据表与收集目标。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/768035">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="https://game8.jp/pocoapokemon/767985">▶︎仲間方法詳查看</a></li><li><a href="https://game8.jp/pocoapokemon/768063">▶︎仲間方法詳查看</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="https://game8.jp/pocoapokemon/767985">▶︎仲間方法詳查看</a>
+          <small>▶︎仲間方法詳查看</small>
+        </li><li>
+          <a href="https://game8.jp/pocoapokemon/768063">▶︎仲間方法詳查看</a>
+          <small>▶︎仲間方法詳查看</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#传说宝可梦・幻宝可梦一览">传说与幻之宝可梦一览</a></li><li><a href="#传说宝可梦・幻宝可梦を仲間にする方法">传说宝可梦幻宝可梦仲間方法</a></li><li><a href="#盖欧卡">盖欧卡</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>传说与幻之宝可梦一览</h1>
+            <p class="sub-title">传说与幻之宝可梦一览</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.27 05:44</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》传说与幻之宝可梦一览。传说宝可梦出現位置仲間方法詳说明。 宝可梦传说宝可梦幻宝可梦知方覧</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12371565/984caf00aca952453eeaa7a683245916.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>《Pokémon Pokopia》传说与幻之宝可梦一览。传说宝可梦出現位置仲間方法詳说明</p><div class="inline-links"></div></div></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767402.html">
+                    <strong>宝可梦图鉴一览（全 303 种）</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767403.html">
+                    <strong>栖息地图鉴与 212 种出现宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h2 id="传说宝可梦・幻宝可梦一览" class="content-head level-2">传说与幻之宝可梦一览</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767808">
+                    <strong>盖欧卡</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767985">
+                    <strong>查看原文 767985</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768063">
+                    <strong>查看原文 768063</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768064">
+                    <strong>查看原文 768064</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767807">
+                    <strong>查看原文 767807</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768022">
+                    <strong>查看原文 768022</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768021">
+                    <strong>查看原文 768021</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768020">
+                    <strong>查看原文 768020</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768265">
+                    <strong>查看原文 768265</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768260">
+                    <strong>查看原文 768260</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/767984">
+                    <strong>查看原文 767984</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768137">
+                    <strong>查看原文 768137</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>Pokémon Pokopia传说 / 幻宝可梦合計12体。中3犬3鳥自分城镇住</p><div class="inline-links"></div></div></section><h2 id="传说宝可梦・幻宝可梦を仲間にする方法" class="content-head level-2">传说宝可梦幻宝可梦仲間方法</h2><h3 id="盖欧卡" class="content-head level-3">盖欧卡</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12371196/8fb497cb139f98b8264c9e17a8a2be84.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>盖欧卡“城镇”剧情中登場。後，“城镇”現，仲間現状分</p><div class="inline-links"></div></div></section><h3 id="ライコウ" class="content-head level-3"></h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12370809/8d445cb2bcd4664e647b335882402980.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768471">
+                    <strong>查看原文 768471</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>“城镇”剧情中登場，後，行地下洞窟稀出現</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/767985">▶︎仲間方法詳查看</a></div></div></section><h3 id="エンテイ" class="content-head level-3"></h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12371686/475f06a049e8cf2c2e71cebb9404838d.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768567">
+                    <strong>查看原文 768567</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>行地下洞窟稀出現</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768063">▶︎仲間方法詳查看</a></div></div></section><h3 id="スイクン" class="content-head level-3"></h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12371879/79550fa80886913f04c976fb00f595b7.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768568">
+                    <strong>查看原文 768568</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>行地下洞窟稀出現</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768064">▶︎仲間方法詳查看</a></div></div></section><h3 id="ボルケニオン" class="content-head level-3"></h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12371934/1d8ef8f3ca0916f8a69d75e8e3d556e3.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>“城镇”剧情中登場。剧情登場後，举办打上花火上再度登場仲間</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/767807">▶︎仲間方法詳查看</a></div></div></section><h3 id="フリーザー・サンダー・ファイヤー" class="content-head level-3"></h3><section class="content-block paragraph-block"><div class="content-copy"><p>3鳥，“城镇”可以获得建設仲間可以</p><div class="inline-links"></div></div></section><h3 id="ルギア" class="content-head level-3"></h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12374169/a3c75cea7fc27619b957c55d7df983ec.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>自分城镇訪使用活动発生图鉴登録可以。自分城镇住</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>3鳥全图鉴登録可以获得</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768265">▶︎仲間方法詳查看</a></div></div></section><h3 id="ホウオウ" class="content-head level-3"></h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12374073/c11abd66ca83cc3a51a753ec04d85ba3.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>自分城镇訪使用活动発生图鉴登録可以。自分城镇住</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>3犬全图鉴登録可以获得</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768260">▶︎仲間方法詳查看</a></div></div></section><h3 id="ミュウツー" class="content-head level-3"></h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12371912/7eac3f8f6a44ddf2d356cc054695bbe9.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768465">
+                    <strong>查看原文 768465</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>剧情最终登場，後，行地下洞窟稀出現</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/767984">▶︎仲間方法詳查看</a></div></div></section><h3 id="ミュウ" class="content-head level-3"></h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12372012/7267abde274bfa6df422a459f704ec9d.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>27種類集，壁画全部込出現仲間</p><div class="inline-links"><a class="inline-link" href="./767582.html">获取方法与用途</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768137">▶︎仲間方法詳查看</a></div></div></section><h2 id="相关文章" class="content-head level-2">相关文章</h2><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365391/fbdb706534c56a7322719e9a39526377.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767402.html">
+                    <strong>宝可梦图鉴一览（全 303 种）</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767403.html">
+                    <strong>栖息地图鉴与 212 种出现宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768188.html">
+                    <strong>一人称一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767404.html">
+                    <strong>得意一览宝可梦</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769344.html">
+                    <strong>宝可梦喜好环境检索</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h3 id="宝可梦関連のお役立ち情報" class="content-head level-3">宝可梦相关实用信息</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767554.html">
+                    <strong>宝可梦气息查看方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768257.html">
+                    <strong>宝可梦出现方法与出现条件</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767513.html">
+                    <strong>提升方法与优点</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767516.html">
+                    <strong>稀有宝可梦高效寻找方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769001.html">
+                    <strong>同宝可梦会出现吗？姿区别宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768006.html">
+                    <strong>色区别宝可梦出现？</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769013.html">
+                    <strong>会进化吗？进化宝可梦出现方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769253.html">
+                    <strong>栖息地与成为伙伴的方法</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h3 id="タイプ按属性分类的宝可梦一览" class="content-head level-3">按属性分类的宝可梦一览</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./769332.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769331.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769330.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769329.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769328.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769327.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769326.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769325.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769324.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769323.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769322.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769321.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769320.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769319.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769318.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769317.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769316.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769315.html">
+                    <strong>宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h3 id="好み・环境別に宝可梦を探す" class="content-head level-3">好环境別宝可梦探</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./769344.html">
+                    <strong>宝可梦喜好环境检索</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769400.html">
+                    <strong>喜好环境宝可梦制作方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769399.html">
+                    <strong>涼喜好环境宝可梦制作方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769398.html">
+                    <strong>喜好环境宝可梦制作方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769397.html">
+                    <strong>乾燥喜好环境宝可梦制作方法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./769396.html">
+                    <strong>喜好环境宝可梦制作方法</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./769395.html">
+                    <strong>喜好环境宝可梦制作方法</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

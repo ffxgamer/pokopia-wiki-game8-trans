@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>每日要素与每天该做的事汇总</title>
+    <meta name="description" content="查看原文完整攻略、数据表、流程说明和评论区补充信息。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/767308">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供奉物效果起方</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767357.html">商店购买推荐</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767357.html">商店购买推荐</a>
+          <small>商店购买推荐</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#デイリー要素・毎日要做的事">每日要素与每天该做的事</a></li><li><a href="#每日刷新わりチャレンジをこなす">每日刷新</a></li><li><a href="#每日刷新わりショップで購入する">每日购买</a></li><li><a href="#フワンテに人形を見せてゆめしまに向かう">查看人偶朝向</a></li><li><a href="#スタンプ集めでスタンプを押す">按压收集点</a></li><li><a href="#宝可梦センターでppを回復できる">宝可梦PP回复</a></li><li><a href="#ビークインのお願いで家具交換">愿望家具交换</a></li><li><a href="#自动販売機で飲料を買う">购买自动售货机饮料</a></li><li><a href="#こけむしカビゴンへのお供奉えをする">供奉</a></li><li><a href="#作物への水やり-自动化可能">给作物浇水（后期可自动化）</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>每日要素与每天该做的事汇总</h1>
+            <p class="sub-title">每日要素与每天该做的事汇总</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.26 12:02</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>本文整理了《Pokémon Pokopia》的每日要素、每天该做的事，以及日期刷新时间。</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12363432/46190a2111d834903c887330d0dde736.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>本文整理了《Pokémon Pokopia》的每日要素、每天该做的事，以及日期刷新时间。</p><div class="inline-links"></div></div></section><h2 id="デイリー要素・毎日要做的事" class="content-head level-2">每日要素与每天该做的事</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="#每日刷新わりチャレンジをこなす">
+                    <strong>每日刷新</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#每日刷新わりショップで購入する">
+                    <strong>每日购买</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#フワンテに人形を見せてゆめしまに向かう">
+                    <strong>查看人偶朝向</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#传说の宝可梦と伙伴になれる">
+                    <strong>按压收集点</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#スタンプ集めでスタンプを押す">
+                    <strong>宝可梦PP回复</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#宝可梦センターでppを回復できる">
+                    <strong>愿望家具交换</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#ビークインのお願いで家具交換">
+                    <strong>购买自动售货机饮料</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#自动販売機で飲料を買う">
+                    <strong>供奉</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#こけむしカビゴンへのお供奉えをする">
+                    <strong>给作物浇水（后期可自动化）</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#作物への水やり-自动化可能">
+                    <strong>参加期间限定活动</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h3 id="每日刷新わりチャレンジをこなす" class="content-head level-3">每日刷新</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12363380/9a26e23edec95250923a4f2514db76c3.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>在《Pokémon Pokopia》中，有些内容会随每日刷新而变化。记得每天确认并尽量利用这些每日要素。</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767281.html">前期高效推进方法</a></div></div></section><h3 id="每日刷新わりショップで購入する" class="content-head level-3">每日购买</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12363381/1b20fa9c68caa3b843af7f0f171eb372.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>每日刷新内容会每天更新，建议固定确认一次，尤其优先购买有用的家具。</p><div class="inline-links"><a class="inline-link" href="./767357.html">商店购买推荐</a></div></div></section><h3 id="フワンテに人形を見せてゆめしまに向かう" class="content-head level-3">查看人偶朝向</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12363382/c6df30a41f873d60d578d77087a683f7.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>人形可以获得，見向忘行。見人形種類带在身边変，1日行1箇所。新人形見次日待需要</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767482.html">传说宝可梦一览与获取方法</a></div></div></section><h4 id="传说の宝可梦と伙伴になれる" class="content-head level-4">传说宝可梦伙伴</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12371686/475f06a049e8cf2c2e71cebb9404838d.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>低確率传说宝可梦出会。前期传说宝可梦伙伴，1日1回忘行</p><div class="inline-links"><a class="inline-link" href="./768035.html">传说与幻之宝可梦一览</a></div></div></section><h3 id="スタンプ集めでスタンプを押す" class="content-head level-3">按压收集点</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12363379/dcc14f9c1e496466286b3b11df6c8df2.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>每天日期变化后，别忘了去检查并领取可互动内容。部分交换项目会在周五之后开放。</p><div class="inline-links"><a class="inline-link" href="./767358.html">刷钱高效方法收集方法</a></div></div></section><h3 id="宝可梦センターでppを回復できる" class="content-head level-3">宝可梦PP回复</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364917/0b04dcbc0b19d1ae9008c3fc5f081311.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>建直宝可梦，1日1回百变怪PP全回复可以。毎日損，食物節約繋。利用時利用</p><div class="inline-links"><a class="inline-link" href="./767420.html">宝可梦修复方法</a></div></div></section><h3 id="ビークインのお願いで家具交換" class="content-head level-3">愿望家具交换</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12381876/eb1945d84f8b6629608e9a2115b12eba.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>伙伴，1日最大4回3個渡，4種類家具中1交換可以。家具出，别忘了每天处理交換推荐</p><div class="inline-links"><a class="inline-link" href="./768358.html">获取方法与用途</a><a class="inline-link" href="https://game8.jp/pocoapokemon/767873">▶︎栖息地好查看</a></div></div></section><h3 id="自动販売機で飲料を買う" class="content-head level-3">购买自动售货机饮料</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12381912/3bf24c444fb49bb9b6796290fe5b8912.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>1日1回，城镇自販機調，飲料1可以获得。可以获得飲料飲，飲料水質異水源作</p><div class="inline-links"><a class="inline-link" href="./768273.html">学会方法、效果与用法</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>自販機， 使用。附近 電柱，先通電</p><div class="inline-links"><a class="inline-link" href="./767646.html">城镇收集要素汇总</a><a class="inline-link" href="./768180.html">電気通方電柱繋方</a><a class="inline-link" href="./768708.html">水車回方制作方法回</a><a class="inline-link" href="./768394.html">自販機(自动販売機)用法与位置</a></div></div></section><h3 id="こけむしカビゴンへのお供奉えをする" class="content-head level-3">供奉</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12381934/63ab836c3f2e2b4f1e073e039c00052a.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>前置供奉物，食物味利益效果変化。味全部6種類，異效果得。利益效果内更新時間翌日4:59継続</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>供奉， 剧情後解锁</p><div class="inline-links"><a class="inline-link" href="./767519.html">城镇攻略流程3</a><a class="inline-link" href="./768274.html">供奉物效果起方</a></div></div></section><h3 id="作物への水やり-自动化可能" class="content-head level-3">给作物浇水（后期可自动化）</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12367986/4490cdfc7839f9837b3abe4a7e7eea4a.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>畑育野菜作物，1日1回水可以。水，特招式宝可梦近配置，放置自动化可以</p><div class="inline-links"><a class="inline-link" href="./767547.html">效果宝可梦一览</a><a class="inline-link" href="https://game8.jp/pocoapokemon/768559">查看原文 768559</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>可以获得可能， 修復後解锁 複製可以</p><div class="inline-links"><a class="inline-link" href="./767647.html">城镇收集要素汇总</a><a class="inline-link" href="./767420.html">宝可梦修复方法</a><a class="inline-link" href="./768266.html">3D用法推荐解锁条件</a><a class="inline-link" href="./767639.html">农业高效玩法与农田建造方法</a></div></div></section><h3 id="時期活动への参加" class="content-head level-3">参加期间限定活动</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12366574/4bfeba8fa6c39366176db3ba9a9d5028.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>特定日付時期活动(活动)举办。活动期間中，限定可以获得，限定宝可梦伙伴。举办中，毎日活动進</p><div class="inline-links"><a class="inline-link" href="./767520.html">活动一览举办时间</a></div></div></section><h2 id="日付の更新タイミング・何時にリセットされる" class="content-head level-2">日期什么时候刷新？</h2><h3 id="朝5時に更新される" class="content-head level-3">每天早上 5 点刷新</h3><section class="content-block paragraph-block"><div class="content-copy"><p>『Pokémon Pokopia』日付，朝5時内時間朝更新。0時更新，間違请注意</p><div class="inline-links"></div></div></section><h2 id="デイリー要素の効率の良い推进方法" class="content-head level-2">每日要素的高效完成方法</h2><h3 id="别忘了每天处理れずにプレイする" class="content-head level-3">别忘了每天处理</h3><section class="content-block paragraph-block"><div class="content-copy"><p>每日要素的高效完成方法，别忘了每天处理。通常以上効率良方法。毎日每日刷新吧</p><div class="inline-links"></div></div></section><h3 id="时间操作的影响すると一瞬で更新できる" class="content-head level-3">调整时间可瞬间刷新吗？</h3><section class="content-block paragraph-block"><div class="content-copy"><p>『Pokémon Pokopia』，本体日付设置1日進要素一瞬更新。少通常外，时间操作的影响抵抗方方法一番効率要素進</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767333.html">日历修改与时间操作可以吗？</a></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

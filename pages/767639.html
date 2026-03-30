@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>农业高效玩法与农田建造方法</title>
+    <meta name="description" content="查看原文步骤、条件与注意事项。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/767639">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./767409.html">百变怪招式一览与学会方法、招式强化方法</a></li><li><a href="./767548.html">效果宝可梦一览</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./767409.html">百变怪招式一览与学会方法、招式强化方法</a>
+          <small>百变怪招式一览与学会方法、招式强化方法</small>
+        </li><li>
+          <a href="./767548.html">效果宝可梦一览</a>
+          <small>效果宝可梦一览</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#農業の高效方法">農業高效方法</a></li><li><a href="#たがやす-で畑を作る">❶畑作</a></li><li><a href="#植物のタネを植える">❷植物植</a></li><li><a href="#水枪-などで水を与えてうるおす">❸“水枪”水与</a></li><li><a href="#成長段階を進める">❹成長段階進</a></li><li><a href="#スプリンクラーを使った自动畑の制作方法">使自动畑制作方法</a></li><li><a href="#スプリンクラーを設置して水やりを自动化する">放置水自动化</a></li><li><a href="#植物-野菜畑-の推荐">植物(野菜畑)推荐</a></li><li><a href="#マメが特に推荐">特推荐</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>农业高效玩法与农田建造方法</h1>
+            <p class="sub-title">农业高效玩法与农田建造方法</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.27 05:52</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》農業高效方法文章。農業方法当然，畑制作方法与推荐作物野菜掲載。Pokémon Pokopia農業知方参考</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12369877/c0a496d359f7da8347fb102db8fd6451.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>《Pokémon Pokopia》農業高效方法文章。農業方法当然，畑制作方法与推荐作物野菜掲載。Pokémon Pokopia農業知方参考</p><div class="inline-links"></div></div></section><h2 id="農業の高效方法" class="content-head level-2">農業高效方法</h2><h3 id="たがやす-で畑を作る" class="content-head level-3">❶畑作</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12367986/4490cdfc7839f9837b3abe4a7e7eea4a.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>植物育，百变怪地面畑需要。干土耕。先“水枪”，後制作吧</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>効率植物育，程度大畑作一度多植物植推荐</p><div class="inline-links"></div></div></section><h4 id="たがやす-はモグリューから覚えられる" class="content-head level-4">覚</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12367978/32be29c96f01227b9b0e33110738f77d.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>荒野城镇(最初城镇)東側覚。習得，先会行</p><div class="inline-links"><a class="inline-link" href="./767409.html">百变怪招式一览与学会方法、招式强化方法</a></div></div></section><h3 id="植物のタネを植える" class="content-head level-3">❷植物植</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12368021/6b1c4ab837db7b9b73466243c457cf81.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>畑，育植物植。植物主購入，仲良宝可梦可以获得</p><div class="inline-links"></div></div></section><h3 id="水枪-などで水を与えてうるおす" class="content-head level-3">❸“水枪”水与</h3><section class="content-block paragraph-block"><div class="content-copy"><p>畑植育，“水枪”等需要。乾畑明色，潤畑暗色，地面色确认一下吧</p><div class="inline-links"></div></div></section><h4 id="みずおけを置いておくとうるおすが得意な宝可梦が水を与えてくれる" class="content-head level-4">置得意宝可梦水与</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12368256/b507ddc87c2bba028f765c9f515ff61a.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>水配置上得意宝可梦連，植物水与</p><div class="inline-links"></div></div></section><h4 id="スプリンクラーに自动で水やりをやってもらう" class="content-head level-4">自动水</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12368212/280b97e95777960f95e1a02cf7ebda3a.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>周围畑自动水。城镇付畑1。回収畑使用吧</p><div class="inline-links"></div></div></section><h3 id="成長段階を進める" class="content-head level-3">❹成長段階進</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12368487/686be1ed32999eadada25e5c967e3cbc.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>作物成長段階進，收获可以。日付更改AM05:00作物1段階成長，妙蛙种子得意宝可梦近，1回作物成長1日1回，1段階早，推荐</p><div class="inline-links"><a class="inline-link" href="./767548.html">效果宝可梦一览</a></div></div></section><h4 id="一部の植物は-さいばい-1回で育ちきらない" class="content-head level-4">一部植物1回育</h4><section class="content-block paragraph-block"><div class="content-copy"><p>花系1回完全成長，植物树木生垣系1回育。初收获次成長1段階実1〜2個程度付，一度收获次收获再度3段階成長必要。收获待方，抵抗时间操作的影响可以</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767333.html">日历修改与时间操作可以吗？</a></div></div></section><h2 id="スプリンクラーを使った自动畑の制作方法" class="content-head level-2">使自动畑制作方法</h2><h3 id="スプリンクラーを設置して水やりを自动化する" class="content-head level-3">放置水自动化</h3><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">1</div>
+              <div class="flow-step-body">
+                <h5>城镇回収</h5>
+                <img class="content-image" src="https://img.game8.jp/12382718/6f8f3a226f1d872d0df4b74cfc29f7b2.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12382723/b7926357362857f7dc8df59e4d72bfda.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 ，南側回収。使予定，回収置問題。 拡大 ， 修理進場合， 水自动化範囲広。後畑拡大備，起動相机写真撮推荐</p><div class="inline-links"><a class="inline-link" href="./767647.html">城镇收集要素汇总</a><a class="inline-link" href="./767420.html">宝可梦修复方法</a><a class="inline-link" href="./768266.html">3D用法推荐解锁条件</a><a class="inline-link" href="./768266.html">3D用法推荐解锁条件</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">2</div>
+              <div class="flow-step-body">
+                <h5>水源真上放置周围耕</h5>
+                <img class="content-image" src="https://img.game8.jp/12382621/cd068667442262bb87b840cb6a609ffd.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 元 ，作水源上放置吧。周围 畑作。 放置際，水源上置，上置推荐。 ，效果範囲上下左右5形。範囲耕</p><div class="inline-links"><a class="inline-link" href="./768146.html">水源制作方法与用途作</a><a class="inline-link" href="./768273.html">学会方法、效果与用法</a><a class="inline-link" href="./768699.html">整地高效方法</a><a class="inline-link" href="https://game8.jp/pocoapokemon/768546">查看原文 768546</a><a class="inline-link" href="./768196.html">学会方法、效果与用法</a><a class="inline-link" href="./768273.html">学会方法、效果与用法</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">3</div>
+              <div class="flow-step-body">
+                <h5>濡箇所育植物作物种植</h5>
+                <img class="content-image" src="https://img.game8.jp/12382666/50011a089b5c94ca86a7f99a1318092f.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>水濡位置，育植物作物種植。特急育無場合， 使推荐。 種購入可以</p><div class="inline-links"><a class="inline-link" href="./767355.html">入团挑战攻略一览与奖励</a><a class="inline-link" href="./768186.html">(豆)获取方法与用途</a><a class="inline-link" href="./768092.html">获取方法与用途</a><a class="inline-link" href="./768017.html">(小麦)获取方法与用途</a><a class="inline-link" href="./767355.html">入团挑战攻略一览与奖励</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">4</div>
+              <div class="flow-step-body">
+                <h5>得意宝可梦連</h5>
+                <img class="content-image" src="https://img.game8.jp/12382700/8d97dae7f7a66f6d84cc4905c954f1b8.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>作物早育場合， ，得意宝可梦畑近連。 使，作物成長1日1回，1段階早可以。 ，宝可梦得意 确认可以</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/767800">妙蛙种子</a><a class="inline-link" href="https://game8.jp/pocoapokemon/767825">查看原文 767825</a><a class="inline-link" href="./767548.html">效果宝可梦一览</a><a class="inline-link" href="./767402.html">宝可梦图鉴一览（全 303 种）</a><a class="inline-link" href="./767402.html">宝可梦图鉴一览（全 303 种）</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">5</div>
+              <div class="flow-step-body">
+                <h5>收获居合斩吸込高效</h5>
+                <img class="content-image" src="https://img.game8.jp/12382740/a06d06d1dc6a80ae2f611be36de3c360.mp4/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>育植物收获自动化。1調回収可以，当吸込(Y长按)，汇总回収可以。 收获後苗種残，再育放置</p><div class="inline-links"><a class="inline-link" href="./767900.html">居合斩学会方法、效果与用法</a><a class="inline-link" href="./767900.html">居合斩学会方法、效果与用法</a></div></div>
+              </div>
+            </article>
+            </section><h2 id="植物-野菜畑-の推荐" class="content-head level-2">植物(野菜畑)推荐</h2><h3 id="マメが特に推荐" class="content-head level-3">特推荐</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770768">
+                    <strong>查看原文 770768</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768186.html">
+                    <strong>(豆)获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>植物(野菜)推荐。料理强化，探索範囲大広。强化状態硬鉱石系集際重宝。多栽培量産良</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>料理直接食PP回复，料理解锁前前期役立</p><div class="inline-links"><a class="inline-link" href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></div></div></section><h4 id="居合斩强化に繋がる-コムギ-も推荐" class="content-head level-4">居合斩强化繋推荐</h4><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768631">
+                    <strong>查看原文 768631</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768017.html">
+                    <strong>(小麦)获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>以外，居合斩强化料理作推荐。居合斩强化，强化同様硬斬，今通道通</p><div class="inline-links"></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

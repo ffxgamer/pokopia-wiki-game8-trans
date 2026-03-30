@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>《Pokémon Pokopia》攻略中文镜像首页</title>
+    <meta
+      name="description"
+      content="Game8《Pokémon Pokopia》攻略首页的本地镜像，按更接近原站的双栏目录样式整理了主线、图鉴、联机、活动、配方与地图攻略入口。"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+        --link: #1a5fb4;
+        --max: 1160px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB",
+          "Microsoft YaHei", sans-serif;
+        font-size: 14px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        width: min(calc(100% - 24px), var(--max));
+        margin: 0 auto;
+      }
+
+      .masthead {
+        border-bottom: 1px solid #ececec;
+        background: #fff;
+      }
+
+      .masthead-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .site-title {
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      .masthead-links {
+        display: flex;
+        gap: 14px;
+      }
+
+      .masthead-links a {
+        color: var(--link);
+      }
+
+      .hero-banner {
+        padding: 20px 0 14px;
+      }
+
+      .hero-banner img {
+        display: block;
+        width: min(100%, 760px);
+        margin: 0 auto;
+        border: 1px solid #ececec;
+      }
+
+      .top-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        border-top: 1px solid #ececec;
+        border-bottom: 1px solid #ececec;
+      }
+
+      .top-nav a {
+        padding: 12px 16px 11px;
+        border-bottom: 3px solid transparent;
+        font-size: 13px;
+      }
+
+      .top-nav a.is-current {
+        border-bottom-color: var(--accent);
+        font-weight: 700;
+      }
+
+      .breadcrumb {
+        padding: 12px 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 8px 0 36px;
+      }
+
+      .box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+
+      .box-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        background: #fff;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .side-list li {
+        border-top: 1px solid #ededed;
+      }
+
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+
+      .side-list a {
+        color: var(--link);
+      }
+
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .ranking-list a {
+        color: var(--link);
+        line-height: 1.5;
+      }
+
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: var(--link);
+        text-align: right;
+      }
+
+      .main {
+        min-width: 0;
+      }
+
+      .headline {
+        padding: 0 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+
+      .headline h1 {
+        margin: 0 0 8px;
+        font-size: 30px;
+        line-height: 1.35;
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+
+      .lead {
+        line-height: 1.8;
+      }
+
+      .lead p {
+        margin: 0 0 10px;
+      }
+
+      .notice-card {
+        margin-top: 12px;
+        border: 1px solid var(--line);
+        background: var(--soft);
+      }
+
+      .notice-row {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        border-top: 1px solid var(--line);
+      }
+
+      .notice-row:first-child {
+        border-top: 0;
+      }
+
+      .notice-label,
+      .notice-value {
+        padding: 10px 12px;
+      }
+
+      .notice-label {
+        background: #fff;
+        font-weight: 700;
+      }
+
+      .notice-value a {
+        color: var(--link);
+      }
+
+      .content {
+        padding-top: 14px;
+      }
+
+      .section {
+        margin-bottom: 18px;
+      }
+
+      .section h2 {
+        margin: 0 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        font-size: 22px;
+        line-height: 1.4;
+      }
+
+      .section p {
+        margin: 0 0 10px;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      .matrix {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+
+      .matrix td {
+        border: 1px solid var(--line);
+        vertical-align: top;
+        padding: 0;
+      }
+
+      .entry {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+
+      .entry strong {
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--ink);
+      }
+
+      .entry small {
+        color: #87928d;
+      }
+
+      .entry a {
+        color: var(--link);
+      }
+
+      .toc-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        margin-bottom: 12px;
+      }
+
+      .toc-links a {
+        color: var(--link);
+      }
+
+      .footer-note {
+        padding: 18px 0 28px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.8;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .top-nav a {
+          width: 50%;
+        }
+
+        .notice-row {
+          grid-template-columns: 1fr;
+        }
+
+        .matrix,
+        .matrix tbody,
+        .matrix tr,
+        .matrix td {
+          display: block;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="shell">
+        <div class="masthead-top">
+          <div class="site-title">《Pokémon Pokopia》攻略 | 中文镜像</div>
+          <nav class="masthead-links">
+            <a href="https://game8.jp/pocoapokemon">Game8 原站</a>
+            <a href="https://www.pocoapokemon.jp/sc/">官网简中</a>
+          </nav>
+        </div>
+        <div class="hero-banner">
+          <img src="https://img.game8.jp/12370997/c73b61dc72abfe533cff7c60d2693eb8.webp/thumb" alt="Pokémon Pokopia banner" />
+        </div>
+        <nav class="top-nav">
+          <a class="is-current" href="#top">攻略首页</a>
+          <a href="#story">剧情</a>
+          <a href="#pokemon">宝可梦图鉴</a>
+          <a href="#items">配方</a>
+          <a href="#maps">地图</a>
+          <a href="#guides">前期与实用信息</a>
+          <a href="#events">活动</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="shell">
+      <div class="breadcrumb">Game8 〉 Pokémon Pokopia 攻略 〉 攻略首页</div>
+
+      <section class="layout" id="top">
+        <aside>
+          <div class="box">
+            <div class="box-title">排行榜</div>
+            <ol class="ranking-list">
+              <li><span class="ranking-no">1</span><a href="pages/767482.html">梦岛一览与传说宝可梦、重置方法</a></li>
+              <li><span class="ranking-no">2</span><a href="pages/767402.html">宝可梦图鉴一览（全 303 种）</a></li>
+              <li><span class="ranking-no">3</span><a href="pages/768274.html">苔藓卡比兽的供品效果与唤醒方法</a></li>
+              <li><span class="ranking-no">4</span><a href="pages/767403.html">生息地图鉴与出现宝可梦（全 212 种）</a></li>
+              <li><span class="ranking-no">5</span><a href="pages/767692.html">料理制作方法一览与推荐食谱</a></li>
+            </ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">更多</a>
+          </div>
+
+          <div class="box" style="margin-top:14px;">
+            <div class="box-title">攻略菜单</div>
+            <ul class="side-list" id="menu-list"></ul>
+          </div>
+        </aside>
+
+        <main class="main">
+          <div class="headline">
+            <h1>《Pokémon Pokopia》攻略</h1>
+            <div class="meta">《Pokémon Pokopia》攻略组 · 最后更新：2026.03.27 05:47</div>
+            <div class="lead">
+              <p>这是《Pokémon Pokopia》的攻略站点，整理了主线剧情、宝可梦生息地，以及素材、配方等数据内容。</p>
+              <p>当前首页优先对齐原站样式与版块结构。标题、导览与入口进行了适度中文化；详细正文请点击进入对应本地子页或原站页面查看。</p>
+            </div>
+            <div class="notice-card">
+              <div class="notice-row">
+                <div class="notice-label">热门入口</div>
+                <div class="notice-value">
+                  <a href="pages/767282.html">剧情攻略流程</a> /
+                  <a href="pages/767402.html">宝可梦图鉴</a> /
+                  <a href="pages/764574.html">共享通信</a> /
+                  <a href="pages/767437.html">多人游玩能做什么</a>
+                </div>
+              </div>
+              <div class="notice-row">
+                <div class="notice-label">本地说明</div>
+                <div class="notice-value">
+                  已生成 <strong>331</strong> 个本地子页，图片继续沿用原站资源，站内文章链接已切换到本地页面。
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content">
+            <div class="toc-links">
+              <a href="#hot">人气推荐</a>
+              <a href="#story">剧情攻略</a>
+              <a href="#pokemon">宝可梦</a>
+              <a href="#guides">实用信息</a>
+              <a href="#events">活动</a>
+              <a href="#items">道具 / 配方</a>
+              <a href="#maps">地图</a>
+            </div>
+
+            <div id="app"></div>
+          </div>
+        </main>
+      </section>
+
+      <footer class="footer-note">
+        本页参考 Game8 首页与提供的 PDF 版式重构为更接近原站的双栏目录页。版权归原站及原作者所有。
+      </footer>
+    </div>
+
+    <script>
+      const sections = [
+        {
+          id: "hot",
+          title: "《Pokémon Pokopia》热门推荐攻略",
+          description: "把首页最常用、最适合开局和回坑的入口集中到一页，方便快速查找。",
+          items: [
+            ["ストーリー攻略チャート", "剧情攻略流程总表", "pages/767282.html"],
+            ["ポケモン図鑑一覧", "宝可梦图鉴", "pages/767402.html"],
+            ["おすそわけ通信のやり方とできること", "共享通信 / 赠送通信", "pages/764574.html"],
+            ["マルチプレイのやり方と解锁条件", "多人游玩能做什么方法", "pages/767437.html"],
+            ["取り返しのつかない要素", "不可逆要素", "pages/767517.html"],
+            ["序盤の高效な進め方", "前期开局高效推进", "pages/767281.html"],
+            ["初心者が覚えておくべきこと", "新手必须知道的内容", "pages/767321.html"],
+            ["連れ歩きのおすすめポケモン", "推荐同行宝可梦", "pages/768614.html"],
+            ["まっさらな街", "纯白之街 / 初始交流地", "pages/767586.html"],
+            ["ゆめしま行き方と一覧", "梦岛进入方法与列表", "pages/767482.html"],
+          ],
+        },
+        {
+          id: "story",
+          title: "剧情攻略流程",
+          description: "按城镇、章节和重要委托整理的主线攻略入口。",
+          items: [
+            ["パサパサ荒野の街・チャート1", "干燥荒野之城：第1章", "pages/767280.html"],
+            ["ゴツゴツやまの街・チャート2", "岩岩山之城：第2章", "pages/767309.html"],
+            ["ドンヨリうみべの街・チャート3", "阴郁海滨之城：第3章", "pages/767519.html"],
+            ["キラキラうきしまの街・チャート4", "闪闪浮岛之城：第4章", "pages/767552.html"],
+            ["大事なおねがいごと一覧", "重要委托总览", "pages/767640.html"],
+            ["ポケモンセンターを直そう", "宝可梦中心修复方法", "pages/767420.html"],
+            ["入団チャレンジ", "入团挑战", "pages/767355.html"],
+            ["继续提升环境等级", "环境等级提升方法", "pages/767551.html"],
+          ],
+        },
+        {
+          id: "pokemon",
+          title: "宝可梦",
+          description: "图鉴、生息地、传说 / 幻、类型分类和环境偏好工具入口。",
+          items: [
+            ["ポケモン図鑑", "宝可梦图鉴", "pages/767402.html"],
+            ["生息地図鑑", "生息地图鉴", "pages/767403.html"],
+            ["伝説・幻ポケモン", "传说 / 幻之宝可梦", "pages/768035.html"],
+            ["得意なこと一覧", "擅长工作一览", "pages/767404.html"],
+            ["环境・好きなもの検索ツール", "环境与喜好检索工具", "pages/769344.html"],
+            ["ノーマル", "一般属性宝可梦", "pages/769332.html"],
+            ["ほのお", "火属性宝可梦", "pages/769331.html"],
+            ["みず", "水属性宝可梦", "pages/769330.html"],
+            ["でんき", "电属性宝可梦", "pages/769328.html"],
+            ["フェアリー", "妖精属性宝可梦", "pages/769315.html"],
+          ],
+        },
+        {
+          id: "guides",
+          title: "实用信息",
+          description: "联机、日常、设置、建造、资源获取等常用信息入口。",
+          items: [
+            ["デイリー要素", "每日要素汇总", "pages/767308.html"],
+            ["ショップおすすめ", "商店推荐", "pages/767357.html"],
+            ["料理一覧とおすすめ", "料理一览与推荐", "pages/767692.html"],
+            ["时间操作的影响できる？", "时间可以调整吗", "pages/767333.html"],
+            ["バッグ拡張方法", "背包扩容方法", "pages/767463.html"],
+            ["金策のやり方", "刷钱方法", "pages/767358.html"],
+            ["クラフトのやり方", "制作方法", "pages/768286.html"],
+            ["建築のコツ", "建筑技巧总览", "pages/771730.html"],
+            ["マウス操作モード", "鼠标操作模式", "pages/769074.html"],
+            ["カメラの使い方", "相机用法", "pages/769077.html"],
+          ],
+        },
+        {
+          id: "events",
+          title: "活动",
+          description: "活动总表和当前活动入口。",
+          items: [
+            ["イベント一覧と開催期間", "活动总览与举办时间", "pages/767520.html"],
+            ["ハネッコのわたげあつめ", "毽子草绒毛收集", "pages/768347.html"],
+          ],
+        },
+        {
+          id: "items",
+          title: "道具与配方",
+          description: "总道具、总配方，以及高频材料与家具入口。",
+          items: [
+            ["全レシピデータ", "全配方数据", "pages/767405.html"],
+            ["全アイテムデータ", "全道具数据", "pages/767406.html"],
+            ["ヒメリのみ", "树果：木子果", "pages/768293.html"],
+            ["マメ", "豆子", "pages/768186.html"],
+            ["トマト", "番茄", "pages/768092.html"],
+            ["コムギ", "小麦", "pages/768017.html"],
+            ["ざいもく", "木材", "pages/767690.html"],
+            ["てつののべぼう", "铁锭", "pages/768291.html"],
+            ["インダストリアルなベッド", "工业风床", "pages/768329.html"],
+            ["せんたくき", "洗衣机", "pages/768299.html"],
+          ],
+        },
+        {
+          id: "maps",
+          title: "地图",
+          description: "总地图、收藏品分类与区域收集要素入口。",
+          items: [
+            ["マップ攻略とコレクション一覧", "地图攻略与收藏总表", "pages/767371.html"],
+            ["いにしえのもの", "古代遗物列表", "pages/767411.html"],
+            ["ニンゲンのきろく", "人类记录列表", "pages/767434.html"],
+            ["ベストショット", "最佳镜头列表", "pages/767514.html"],
+            ["モンスターボール", "精灵球收藏", "pages/767503.html"],
+            ["CD", "CD 收藏", "pages/767637.html"],
+            ["パサパサこうや", "干燥荒野收集要素", "pages/767641.html"],
+            ["ドンヨリうみべ", "阴郁海滨收集要素", "pages/767646.html"],
+            ["ゴツゴツやま", "岩山收集要素", "pages/767647.html"],
+            ["キラキラうきしま", "闪耀浮岛收集要素", "pages/768187.html"],
+          ],
+        },
+      ];
+
+      const rankingMenu = [
+        ["剧情攻略流程", "pages/767282.html"],
+        ["宝可梦图鉴一览", "pages/767402.html"],
+        ["共享通信的方法与内容", "pages/764574.html"],
+        ["多人游玩能做什么的方法与解锁条件", "pages/767437.html"],
+        ["不可逆要素", "pages/767517.html"],
+        ["神秘礼物与序列号", "pages/767275.html"],
+        ["前期高效推进方法", "pages/767281.html"],
+        ["新手必须知道的事", "pages/767321.html"],
+        ["电力连接方法与基础设施", "pages/768180.html"],
+        ["评测与游玩感想", "https://game8.jp/switch2/767398"],
+      ];
+
+      const menuList = document.getElementById("menu-list");
+      const app = document.getElementById("app");
+
+      function renderMenu() {
+        menuList.innerHTML = rankingMenu
+          .map(
+            ([label, href]) => `<li><a href="${href}">${label}</a></li>`,
+          )
+          .join("");
+      }
+
+      function renderTable(items) {
+        const rows = [];
+        for (let i = 0; i < items.length; i += 2) {
+          const pair = items.slice(i, i + 2);
+          const cols = pair.map(
+            ([jp, zh, href]) => `
+              <td>
+                <div class="entry">
+                  <a href="${href}">
+                    <strong>${zh}</strong>
+                  </a>
+                </div>
+              </td>`,
+          );
+          if (cols.length === 1) cols.push("<td></td>");
+          rows.push(`<tr>${cols.join("")}</tr>`);
+        }
+        return `<table class="matrix"><tbody>${rows.join("")}</tbody></table>`;
+      }
+
+      function render() {
+        app.innerHTML = sections
+          .map(
+            (section) => `
+              <section class="section" id="${section.id}">
+                <h2>${section.title}</h2>
+                <p>${section.description}</p>
+                ${renderTable(section.items)}
+              </section>
+            `,
+          )
+          .join("");
+      }
+
+      renderMenu();
+      render();
+    </script>
+  </body>
+</html>

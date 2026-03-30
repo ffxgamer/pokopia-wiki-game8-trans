@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>收纳方法整理</title>
+    <meta name="description" content="查看原文步骤、条件与注意事项。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/768295">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767422.html">一览与获取方法全46种收录</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767422.html">一览与获取方法全46种收录</a>
+          <small>一览与获取方法全46种收录</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#收纳のコツ・ポイント">收纳</a></li><li><a href="#多くのアイテムが入るビッグ收纳ボックスを使う">多入收纳使</a></li><li><a href="#收纳ボックスごとに收纳する分類を統一する">收纳收纳分類統一</a></li><li><a href="#收纳ボックスを作りすぎない">收纳作</a></li><li><a href="#持ち物の所持上限を増やす">持物所持上限増</a></li><li><a href="#しゅうのう-が得意な宝可梦を連れ歩いて預ける">得意宝可梦連歩預</a></li><li><a href="#しわける-が得意な宝可梦にみんなのボックスに入れてもらう">得意宝可梦入</a></li><li><a href="#使わないアイテムは取引で使って整理する">使取引使整理</a></li><li><a href="#收纳ボックスの获取方法・制作方法">收纳获取方法制作方法</a></li><li><a href="#ざいもくから制作して作る">制作作</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>收纳方法整理</h1>
+            <p class="sub-title">收纳方法整理</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.27 05:26</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》收纳文章。收纳(整理)方法当然，收纳说明。 宝可梦收纳整理方法想了解的话可以参考本文</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12376504/8b595bbb9a64e2178fd6703811604546.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>《Pokémon Pokopia》收纳文章。收纳(整理)方法当然，收纳说明</p><div class="inline-links"></div></div></section><h2 id="收纳のコツ・ポイント" class="content-head level-2">收纳</h2><h3 id="多くのアイテムが入るビッグ收纳ボックスを使う" class="content-head level-3">多入收纳使</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12376338/ab7e43883371e49360722f873a29b6c0.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770784">
+                    <strong>查看原文 770784</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768267.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>收纳一番，多入“收纳”使。收纳通常3倍收纳，160種收纳因此可以，手入基本的收纳使推荐</p><div class="inline-links"></div></div></section><h4 id="ビッグ收纳ボックスのレシピは图鉴30匹登録奖励" class="content-head level-4">收纳图鉴30匹登録奖励</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12376339/b44ed73388cc520aac0cca80a6fda7e6.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>收纳，宝可梦图鉴宝可梦30匹登録時奖励可以获得</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767402.html">宝可梦图鉴一览（全 303 种）</a></div></div></section><h3 id="收纳ボックスごとに收纳する分類を統一する" class="content-head level-3">收纳收纳分類統一</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12376360/db0ab7a59e5e7cf260e2a1ae63cf515e.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>收纳際，收纳收纳分類統一推荐。收纳食材，收纳鉱物，分類使分，特定探時見</p><div class="inline-links"></div></div></section><h4 id="がくぶちを使って整理するのが推荐" class="content-head level-4">使整理推荐</h4><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770769">
+                    <strong>查看原文 770769</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767690.html">
+                    <strong>(材树木)高效收集方法与用途</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>分類統一收纳，使整理推荐。好中入飾可以。中分類代表入，分類一目可以</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>初鑑定時可以获得</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767422.html">一览与获取方法全46种收录</a></div></div></section><h3 id="收纳ボックスを作りすぎない" class="content-head level-3">收纳作</h3><section class="content-block paragraph-block"><div class="content-copy"><p>收纳，“收纳”多作。收纳作，收纳收纳。收纳程度使個数与位置絞方整理</p><div class="inline-links"></div></div></section><h3 id="持ち物の所持上限を増やす" class="content-head level-3">持物所持上限増</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365053/e6e8ecb6748890586decebbd662db075.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>持物收纳整理，単純持物所持上限増非常大切，持物所持上限，“背包整理”“背包”購入増</p><div class="inline-links"><a class="inline-link" href="./767463.html">持物所持上限增加方法背包拡張方法</a></div></div></section><h3 id="しゅうのう-が得意な宝可梦を連れ歩いて預ける" class="content-head level-3">得意宝可梦連歩預</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12376432/7fdcab29bbb8c98b462cbc5932382403.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>得意宝可梦，收纳同預可以。宝可梦連歩，実質的動收纳活用可以</p><div class="inline-links"><a class="inline-link" href="./767525.html">效果宝可梦一览</a><a class="inline-link" href="https://game8.jp/pocoapokemon/767875">查看原文 767875</a><a class="inline-link" href="./767525.html">效果宝可梦一览</a></div></div></section><h3 id="しわける-が得意な宝可梦にみんなのボックスに入れてもらう" class="content-head level-3">得意宝可梦入</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12376452/98757eefb6f5268a6021713020247573.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770597">
+                    <strong>查看原文 770597</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767690.html">
+                    <strong>(材树木)高效收集方法与用途</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>得意宝可梦，周围落素材入</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/767844">查看原文 767844</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>近加工場自动中入。非常便利。積極的活用吧</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./769942.html">自动化方法</a></div></div></section><h3 id="使わないアイテムは取引で使って整理する" class="content-head level-3">使取引使整理</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12376483/5b7fa6913cd73d70d40d7564e820166c.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>整理，使不要持。所持種類多整理限界，使不要取引使整理推荐</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./768336.html">取引推荐方法</a></div></div></section><h2 id="收纳ボックスの获取方法・制作方法" class="content-head level-2">收纳获取方法制作方法</h2><h3 id="ざいもくから制作して作る" class="content-head level-3">制作作</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770785">
+                    <strong>查看原文 770785</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767690.html">
+                    <strong>(材树木)高效收集方法与用途</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>收纳，材树木制作作。收纳作数制限。必要分作倉庫使用吧</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767690.html">(材树木)高效收集方法与用途</a></div></div></section><h3 id="ビッグ收纳ボックスはポケメタルから作る" class="content-head level-3">收纳作</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770784">
+                    <strong>查看原文 770784</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768267.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>多收纳收纳，3制作可以。通常收纳3倍收纳因此可以，收纳作基本上不推荐使用</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./768267.html">获取方法与用途</a></div></div></section><h2 id="收纳の方法" class="content-head level-2">收纳方法</h2><h3 id="ボックスを設置した後調べてアイテムを移す" class="content-head level-3">放置後調移</h3><section class="content-block paragraph-block"><div class="content-copy"><p>收纳，任意位置放置後，調手持移倉庫使。收纳数多保管。持收纳入</p><div class="inline-links"></div></div></section><h3 id="制作台の横に置くと中身を制作に使える" class="content-head level-3">制作台横置中身制作使</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364272/692ac4bee5dfbee96c4f1efdc04eafda.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>制作台横隣接收纳置，收纳中身制作使。手持組合制作非常便利。素材入收纳制作台横作推荐</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./768286.html">制作方法与推荐</a></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

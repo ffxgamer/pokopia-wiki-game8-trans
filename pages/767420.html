@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>宝可梦修复方法</title>
+    <meta name="description" content="查看原文步骤、条件与注意事项。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/767420">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./771731.html">宝可梦移动可以吗？方法与步骤</a></li><li><a href="./767358.html">刷钱高效方法收集方法</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./771731.html">宝可梦移动可以吗？方法与步骤</a>
+          <small>宝可梦移动可以吗？方法与步骤</small>
+        </li><li>
+          <a href="./767358.html">刷钱高效方法收集方法</a>
+          <small>刷钱高效方法收集方法</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#宝可梦センターの修复方法">宝可梦修复方法</a></li><li><a href="#ポケセンたてなおしキット-を買う">①買</a></li><li><a href="#材料を集める">②材料集</a></li><li><a href="#手伝ってくれる宝可梦を集める">③手伝宝可梦集</a></li><li><a href="#作業完了まで待つ">④作業完了待</a></li><li><a href="#宝可梦センターを直すための必要素材と宝可梦">宝可梦直必要素材宝可梦</a></li><li><a href="#各城镇ごとの必要素材と宝可梦一览">各城镇必要素材宝可梦一览</a></li><li><a href="#宝可梦センターを直すメリット">宝可梦直</a></li><li><a href="#大事なおねがいごと-を完了するために必要">“重要”完了必要</a></li><li><a href="#1日1回ppを全回復できる">1日1回PP全回复</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>宝可梦修复方法</h1>
+            <p class="sub-title">宝可梦修复方法</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.26 12:02</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》宝可梦修复方法文章。宝可梦建直当然，直掲載。Pokémon Pokopia直知方参考</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364986/716adba12294c5d778baf3f1b38421d7.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>《Pokémon Pokopia》宝可梦修复方法文章。宝可梦建直当然，直掲載</p><div class="inline-links"></div></div></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./771731.html">
+                    <strong>宝可梦移动可以吗？方法与步骤</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h2 id="宝可梦センターの修复方法" class="content-head level-2">宝可梦修复方法</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="#ポケセンたてなおしキット-を買う">
+                    <strong>買</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#材料を集める">
+                    <strong>材料集</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#手伝ってくれる宝可梦を集める">
+                    <strong>手伝宝可梦集</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#作業完了まで待つ">
+                    <strong>作業完了待</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h3 id="ポケセンたてなおしキット-を買う" class="content-head level-3">①買</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364557/bd14b9b55cc546222eea4c475ad366ca.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>宝可梦建直，購入吧。环境3以上時購入可以。1000必要。焦少达成貯</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767358.html">刷钱高效方法收集方法</a></div></div></section><h3 id="材料を集める" class="content-head level-3">②材料集</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364640/33271ec24994820eab6f8686eb6d9e0b.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>宝可梦建直材料集需要。必要材料，宝可梦前置調确认一下吧</p><div class="inline-links"></div></div></section><h3 id="手伝ってくれる宝可梦を集める" class="content-head level-3">③手伝宝可梦集</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364643/1b026be80efde05e2c52aa577d6f8791.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>宝可梦建直，手伝宝可梦集需要。置調，手伝宝可梦确认一下吧</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767402.html">宝可梦图鉴一览（全 303 种）</a></div></div></section><h3 id="作業完了まで待つ" class="content-head level-3">④作業完了待</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364879/68383550ca69c759dfdd02f286dc243c.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>材料宝可梦揃宝可梦建直开始，作業完了待。Pokémon Pokopia，内日付朝5時変，建直開开始時点見翌日05:00作業完了</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>翌日待方，本体时间操作的影响完成可以</p><div class="inline-links"><a class="inline-link" href="./767333.html">日历修改与时间操作可以吗？</a></div></div></section><h2 id="宝可梦センターを直すための必要素材と宝可梦" class="content-head level-2">宝可梦直必要素材宝可梦</h2><h3 id="各城镇ごとの必要素材と宝可梦一览" class="content-head level-3">各城镇必要素材宝可梦一览</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767690.html">
+                    <strong>(材树木)高效收集方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768001.html">
+                    <strong>(石)获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767694.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768061.html">
+                    <strong>高效获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767544.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767545.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767546.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768001.html">
+                    <strong>(石)获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768289.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768291.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768201.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767544.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767545.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767537.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767796.html">
+                    <strong>糸高效获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768068.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768368">
+                    <strong>查看原文 768368</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768194.html">
+                    <strong>(铁)高效获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767544.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767545.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767547.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768267.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768281.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768280.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768292.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767544.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767545.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767539.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767690.html">
+                    <strong>(材树木)高效收集方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768001.html">
+                    <strong>(石)获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767694.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768061.html">
+                    <strong>高效获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767544.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767545.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767546.html">
+                    <strong>效果宝可梦一览</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h2 id="宝可梦センターを直すメリット" class="content-head level-2">宝可梦直</h2><h3 id="大事なおねがいごと-を完了するために必要" class="content-head level-3">“重要”完了必要</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364552/caacccda80f0a4ae15b7dd0103477dd7.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>巨蔓藤博士“重要”完了宝可梦建直需要。宝可梦直重要願事城镇発生。余裕直</p><div class="inline-links"><a class="inline-link" href="./767640.html">重要委托攻略一览</a></div></div></section><h4 id="剧情進行上では必須にはならない" class="content-head level-4">剧情推进上必須</h4><section class="content-block paragraph-block"><div class="content-copy"><p>宝可梦修理，剧情推进上必要。宝可梦直次進因此可以，剧情続気方直次進問題</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767510.html">次行？</a></div></div></section><h3 id="1日1回ppを全回復できる" class="content-head level-3">1日1回PP全回复</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364917/0b04dcbc0b19d1ae9008c3fc5f081311.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>宝可梦建直，PP全回复。PP減宝可梦中使，PP回复吧</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767305.html">获取方法与PP回复方法</a></div></div></section><h3 id="とりひき-が得意な宝可梦とアイテム交換ができる" class="content-head level-3">得意宝可梦交換可以</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365155/cd6ab011e8a23a9680287b312f41bc82.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>宝可梦内，等得意宝可梦交換可以</p><div class="inline-links"><a class="inline-link" href="./767535.html">效果宝可梦一览</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./768336.html">取引推荐方法</a></div></div></section><h3 id="3dプリンターが利用できる" class="content-head level-3">3D利用</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12366316/f606211e1328ea12de0f625c0aa14200.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>宝可梦内3D利用。3D，消費写真撮可以</p><div class="inline-links"><a class="inline-link" href="./768267.html">获取方法与用途</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./768266.html">3D用法推荐解锁条件</a></div></div></section><h3 id="チャレンジ-宝可梦センターを修复-を达成できる" class="content-head level-3">“宝可梦修复！”达成</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12364762/bdcf3d792fdcc062f13f9703f7b8ff05.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>宝可梦建直，“宝可梦修复！”达成可以。購入使多。忘奖励</p><div class="inline-links"></div></div></section><h3 id="活动参加の条件になっている" class="content-head level-3">活动参加条件</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12376890/f3b02d76f339d23ae8a8bdf279246f71.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>『Pokémon Pokopia』活动，宝可梦直参加条件一。例，3月季節活动，宝可梦直城镇発生活动。季節活动游玩宝可梦直推荐</p><div class="inline-links"><a class="inline-link" href="./768347.html">攻略推进方法举办时间</a><a class="inline-link" href="./768347.html">攻略推进方法举办时间</a></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

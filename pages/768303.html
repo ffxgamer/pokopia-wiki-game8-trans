@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>获取方法与用途</title>
+    <meta name="description" content="查看原文步骤、条件与注意事项。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/768303">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./771025.html">材料一览</a></li><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./768193.html">学会方法、效果与用法</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./771025.html">材料一览</a>
+          <small>材料一览</small>
+        </li><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./768193.html">学会方法、效果与用法</a>
+          <small>学会方法、效果与用法</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#レアポケメタルのかけらの获取方法">获取方法</a></li><li><a href="#キラキラうきしまのジム跡地でポケメタルの岩を壊して稀に获取">跡地岩壊稀可以获得</a></li><li><a href="#他の人の宝可梦のおねがいごとをクリアする">他人宝可梦</a></li><li><a href="#レアポケメタルのかけらの高效收集方法">高效收集方法</a></li><li><a href="#そらのゆめしまを周回するのが推荐">周回推荐</a></li><li><a href="#レアポケメタルのかけらの效果と使い道">效果与用途</a></li><li><a href="#ようこうろで加工するとレアポケメタルを获取">加工可以获得</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>获取方法与用途</h1>
+            <p class="sub-title">获取方法与用途</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.19 20:46</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》获取方法与用途。获取方法当然，使道说明。 宝可梦想了解的话可以参考本文</p></div>
+          </div>
+          <div class="content-wrap"><h2 id="レアポケメタルのかけらの获取方法" class="content-head level-2">获取方法</h2><h3 id="キラキラうきしまのジム跡地でポケメタルの岩を壊して稀に获取" class="content-head level-3">跡地岩壊稀可以获得</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12375973/6f1ae9bb7b3cbc8a565bdc5025db68ec.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>岩破壊，稀可以获得， 跡地，壊可以获得吧</p><div class="inline-links"><a class="inline-link" href="./768193.html">学会方法、效果与用法</a><a class="inline-link" href="./767552.html">城镇攻略流程4</a></div></div></section><h4 id="硬いブロックのため-ハンバーグ-の料理が必要" class="content-head level-4">硬料理必要</h4><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769650">
+                    <strong>查看原文 769650</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/770768">
+                    <strong>查看原文 770768</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768186.html">
+                    <strong>(豆)获取方法与用途</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>硬材質，料理食强化需要。料理，2目剧情解锁</p><div class="inline-links"><a class="inline-link" href="./767647.html">城镇收集要素汇总</a><a class="inline-link" href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></div></div></section><h3 id="他の人の宝可梦のおねがいごとをクリアする" class="content-head level-3">他人宝可梦</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12382412/317266ac01e32b0b60a43ae8fb090427.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>宝可梦前“通信”他宝可梦知合，自分岛遊来(来右上通知表示/状態确认済)。遊他人宝可梦宝可梦前，话，叶奖励，場合</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767437.html">多人游玩方法与解锁条件</a></div></div></section><h2 id="レアポケメタルのかけらの高效收集方法" class="content-head level-2">高效收集方法</h2><h3 id="そらのゆめしまを周回するのが推荐" class="content-head level-3">周回推荐</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768465">
+                    <strong>查看原文 768465</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/768303">
+                    <strong>查看原文</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768300.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768267.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768201.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>高效集場合，人形使行周回推荐。日付跨再訪地形。永久的素材集可以</p><div class="inline-links"><a class="inline-link" href="./767482.html">传说宝可梦一览与获取方法</a></div></div></section><h4 id="采掘する際は必ずハンバーグで-ころがる-を强化する" class="content-head level-4">采掘際必强化</h4><section class="content-block paragraph-block"><div class="content-copy"><p>强化使効率大幅落注意必要。用意采掘吧</p><div class="inline-links"><a class="inline-link" href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></div></div></section><h4 id="ポケメタルの鉱石はまとまって生成されやすい" class="content-head level-4">鉱石生成</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12390340/2ae377c08412a4ea4b2365f55207a4c1.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>鉱石生成訳，複数個生成，壁面鉱石現時周掘吧</p><div class="inline-links"></div></div></section><h4 id="適度に散らばったブロックを回収する" class="content-head level-4">適度散回収</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12390352/65c01253f8084e5562c5a5e0b5776c40.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>鉱石集際適度散回收吧。回収破壊続表示数上限達，古消可能性。PP半分減1回周围吸込回收吧。持物一杯場捨</p><div class="inline-links"></div></div></section><h2 id="レアポケメタルのかけらの效果と使い道" class="content-head level-2">效果与用途</h2><h3 id="ようこうろで加工するとレアポケメタルを获取" class="content-head level-3">加工可以获得</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12374214/c58fbdccd1119de851e292bef588289e.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./768326.html">
+                    <strong>获取方法与用途</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>加工可以获得。加工 解禁要素，他得意宝可梦必要</p><div class="inline-links"><a class="inline-link" href="./767309.html">城镇攻略流程2</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767549.html">效果宝可梦一览</a></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

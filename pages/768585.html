@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>色風船制作方法与用途</title>
+    <meta name="description" content="查看原文步骤、条件与注意事项。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/768585">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./768640.html">获取方法与用途</a></li><li><a href="./767537.html">效果宝可梦一览</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./768640.html">获取方法与用途</a>
+          <small>获取方法与用途</small>
+        </li><li>
+          <a href="./767537.html">效果宝可梦一览</a>
+          <small>效果宝可梦一览</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#色風船の制作方法">色風船制作方法</a></li><li><a href="#レシピを获取し制作する">可以获得制作</a></li><li><a href="#色風船のレシピ获取方法">色風船获取方法</a></li><li><a href="#ドーブルのおねがいごとでレシピを获取できる">获取</a></li><li><a href="#色風船の使い道">色風船使道</a></li><li><a href="#家具やブロックの色を変えられる">家具色変</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>色風船制作方法与用途</h1>
+            <p class="sub-title">色風船制作方法与用途</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.26 12:02</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》色風船制作方法与用途文章。掲載。 宝可梦色風船制作方法与用法知方参考</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12378849/ef03abe1f1b3e06b2924fedebece4909.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>《Pokémon Pokopia》色風船制作方法与用途文章。掲載。 宝可梦色風船制作方法与用法知方参考</p><div class="inline-links"></div></div></section><h2 id="色風船の制作方法" class="content-head level-2">色風船制作方法</h2><h3 id="レシピを获取し制作する" class="content-head level-3">可以获得制作</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12378800/246434cfb87210eea702640e497ddaf3.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>色風船，可以获得材料制作作。色風船色材料絵具種類変。絵具得意宝可梦渡可以获得，出来上色変</p><div class="inline-links"><a class="inline-link" href="./768640.html">获取方法与用途</a></div></div></section><h2 id="色風船のレシピ获取方法" class="content-head level-2">色風船获取方法</h2><h3 id="ドーブルのおねがいごとでレシピを获取できる" class="content-head level-3">获取</h3><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">1</div>
+              <div class="flow-step-body">
+                <h5>“城镇”话</h5>
+                <img class="content-image" src="https://img.game8.jp/12369671/5a164f6d12abbc242f111a0b26ffc19f.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 “城镇”南東话。近活动発生，会话开始</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">2</div>
+              <div class="flow-step-body">
+                <h5>見</h5>
+                <img class="content-image" src="https://img.game8.jp/12378355/5e125539a8c225486a1554530c14c859.webp/original" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>持欲言，持行。城镇生树木取。持树木揺取</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">3</div>
+              <div class="flow-step-body">
+                <h5>潰頼</h5>
+                <img class="content-image" src="https://img.game8.jp/12378473/3977ebb2d222e4bd7279f9c1786e4f26.webp/original" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>潰持頼。後，得意栖息地教</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">4</div>
+              <div class="flow-step-body">
+                <h5>栖息地作</h5>
+                <img class="content-image" src="https://img.game8.jp/12378502/89d67b0da5e0ca337ce64c5623b6f498.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12378504/54576ea741f6f9156eb2aae3d1a457d4.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 拡大 栖息地 実際外观 教栖息地作。“城镇”中央附近机並置。食物配置簡単栖息地作可以</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">5</div>
+              <div class="flow-step-body">
+                <h5>得意宝可梦絵具</h5>
+                <img class="content-image" src="https://img.game8.jp/12378641/8c7678978968fa2bcb0ed6ba0f1cd80e.webp/original" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>得意宝可梦渡絵具。以外得意宝可梦絵具作問題</p><div class="inline-links"><a class="inline-link" href="./767537.html">效果宝可梦一览</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">6</div>
+              <div class="flow-step-body">
+                <h5></h5>
+                <img class="content-image" src="https://img.game8.jp/12378694/1a28eadc5ee69a60cc9026d1b628be53.webp/original" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>完成。先可以获得絵具使，色変</p><div class="inline-links"><a class="inline-link" href="./768640.html">获取方法与用途</a><a class="inline-link" href="./768640.html">获取方法与用途</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">7</div>
+              <div class="flow-step-body">
+                <h5>後对话色風船可以获得</h5>
+                <img class="content-image" src="https://img.game8.jp/12378731/35dd8af332c294fd3f9733b73ccb7fa3.webp/original" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>後，再度对话色風船可以获得</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><h2 id="色風船の使い道" class="content-head level-2">色風船使道</h2><h3 id="家具やブロックの色を変えられる" class="content-head level-3">家具色変</h3><section class="content-block paragraph-block"><div class="content-copy"><p>Pokémon Pokopia，色風船使家具色変可以。色風船持，色変向使用，色風船色。1着色1色風船消費。広範囲色変場合大量色風船必要</p><div class="inline-links"></div></div></section><h4 id="色や柄をこだわりたいときはドーブルにペイントしてもらう" class="content-head level-4">色柄</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12378913/346116a1110cd08392adaec03cefe1b4.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>色柄変。色変，柄変可以場合</p><div class="inline-links"><a class="inline-link" href="./767528.html">效果宝可梦一览</a></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

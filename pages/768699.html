@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>整地高效方法</title>
+    <meta name="description" content="查看原文步骤、条件与注意事项。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/768699">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./768259.html">学会方法、效果与用法</a></li><li><a href="./767309.html">城镇攻略流程2</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./768259.html">学会方法、效果与用法</a>
+          <small>学会方法、效果与用法</small>
+        </li><li>
+          <a href="./767309.html">城镇攻略流程2</a>
+          <small>城镇攻略流程2</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#整地の高效方法">整地高效方法</a></li><li><a href="#ころがる-と-いわくだき-を先学会滚动和碎岩える">①先学会招式</a></li><li><a href="#ハンバーグを大量に作る">②大量制作料理</a></li><li><a href="#所持アイテムを整理して空きを作る">③整理背包腾出空间</a></li><li><a href="#整地する位置を決める">④决定整地位置</a></li><li><a href="#整地位置の近くに收纳ボックスを置く">⑤在整地地点附近放收纳箱</a></li><li><a href="#木など邪魔なものは先に取り除いておく">⑥先清除树木等障碍物</a></li><li><a href="#高低差がある場合は上から整地していく">⑦有高度差时从上往下整地</a></li><li><a href="#壊したブロックを吸い込んで回収する">⑧吸收并回收破坏后的方块</a></li><li><a href="#掘り残しや掘りすぎた部分を手直しする">⑨修整漏挖或挖多的部分</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>整地高效方法</h1>
+            <p class="sub-title">整地高效方法</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.26 12:02</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》整地高效方法文章。整地方法注意点掲載。Pokémon Pokopia整地高效方法知方参考</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12382193/6b5eadfcce6e3c33b65e2744db517cb7.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>《Pokémon Pokopia》整地高效方法文章。整地方法注意点掲載。 宝可梦整地高效方法知方参考</p><div class="inline-links"></div></div></section><h2 id="整地の高效方法" class="content-head level-2">整地高效方法</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="#ころがる-と-いわくだき-を先学会滚动和碎岩える">
+                    <strong>先学会滚动和碎岩</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#ハンバーグを大量に作る">
+                    <strong>大量制作汉堡排</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#ジャガイモハンバーグといろどりハンバーグが推荐">
+                    <strong>整理所持道具</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#所持アイテムを整理して空きを作る">
+                    <strong>决定整地位置</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#整地する位置を決める">
+                    <strong>在整地地点附近放收纳箱</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#足元にブロックを積んで見下ろすと位置を決めやすい">
+                    <strong>先清除树木等障碍物</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#整地位置の近くに收纳ボックスを置く">
+                    <strong>有高度差时从上往下整地</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#木など邪魔なものは先に取り除いておく">
+                    <strong>吸收并回收破坏后的方块</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#高低差がある場合は上から整地していく">
+                    <strong>修整漏挖或挖多的部分</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h3 id="ころがる-と-いわくだき-を先学会滚动和碎岩える" class="content-head level-3">①先学会招式</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./768259.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767309.html">
+                    <strong>城镇攻略流程2</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./768193.html">
+                    <strong>学会方法、效果与用法</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767280.html">
+                    <strong>荒野城镇攻略流程 1</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>整地，百变怪招式先学会滚动和碎岩需要。整地可以，先学会滚动和碎岩効率整地可以。先学会滚动和碎岩。剧情進</p><div class="inline-links"><a class="inline-link" href="./768259.html">学会方法、效果与用法</a><a class="inline-link" href="./768193.html">学会方法、效果与用法</a><a class="inline-link" href="./767309.html">城镇攻略流程2</a></div></div></section><h3 id="ハンバーグを大量に作る" class="content-head level-3">②大量制作料理</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12380859/dcd63df027da1664ab90492aa61e713b.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>整地効率行，料理大量制作吧。食强化，壊壊，破壊上。料理食招式PP回复。PP切食</p><div class="inline-links"><a class="inline-link" href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></div></div></section><h4 id="ジャガイモハンバーグといろどりハンバーグが推荐" class="content-head level-4">推荐</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12381446/694b325aec22b8f97cfa3bd0a7b4b587.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./768186.html">
+                    <strong>(豆)获取方法与用途</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769254">
+                    <strong>查看原文 769254</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769259">
+                    <strong>查看原文 769259</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./768186.html">
+                    <strong>(豆)获取方法与用途</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="https://game8.jp/pocoapokemon/769254">
+                    <strong>查看原文 769254</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><section class="content-block paragraph-block"><div class="content-copy"><p>中，推荐。强化，他食時硬壊可以</p><div class="inline-links"><a class="inline-link" href="./768193.html">学会方法、效果与用法</a><a class="inline-link" href="./768259.html">学会方法、效果与用法</a></div></div></section><h3 id="所持アイテムを整理して空きを作る" class="content-head level-3">③整理背包腾出空间</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12381227/1219109da8aadadccb2cfe40631a1d9b.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>整地作業取掛前，整理所持道具空作。整理所持道具，整地発生大量回収推荐</p><div class="inline-links"></div></div></section><h3 id="整地する位置を決める" class="content-head level-3">④决定整地位置</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12381288/36e7b4afcedea281bdb2df6a06c5da1c.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>整地开始前，整地(平)位置決。决定整地位置外側先掘，作業範囲目視因此可以整地</p><div class="inline-links"></div></div></section><h4 id="足元にブロックを積んで見下ろすと位置を決めやすい" class="content-head level-4">足元積見下与位置決</h4><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12382589/87c62caef0cff09359ca2988f101edc5.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>决定整地位置際，足元積高所見下決。足元積，真下向吐出吧</p><div class="inline-links"></div></div></section><h3 id="整地位置の近くに收纳ボックスを置く" class="content-head level-3">⑤在整地地点附近放收纳箱</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12381308/a676b658e4c060b3c11a31c3022ccd41.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>决定整地位置，近收纳放置吧。整地位置近收纳，整地発生大量收纳便利。大規模整地場合，收纳置推荐</p><div class="inline-links"><a class="inline-link" href="./768295.html">收纳方法整理</a></div></div></section><h3 id="木など邪魔なものは先に取り除いておく" class="content-head level-3">⑥先清除树木等障碍物</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12382214/0604ca4cda24df88f4cc3401ae52d7da.webp/show" loading="lazy" alt="文章配图" /><div class="content-copy"><p>先清除树木等障碍物，効率整地可以。先学会滚动和碎岩，整地後树木取除，気問題</p><div class="inline-links"><a class="inline-link" href="./768199.html">学会方法、效果与用法</a></div></div></section><h3 id="高低差がある場合は上から整地していく" class="content-head level-3">⑦有高度差时从上往下整地</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12381404/d594692622b13fcb3c4adf631a094342.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>整地开始際，有高度差时从上往下整地。下整地，高所残壊再度足場作。自分低位置(足下)壊，整地位置一番高所1下高整地推荐</p><div class="inline-links"></div></div></section><h3 id="壊したブロックを吸い込んで回収する" class="content-head level-3">⑧吸收并回收破坏后的方块</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12381499/2e5c87df3563c77190c8f3252f4ad947.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>整地作業，定期的吸收并回收破坏后的方块吧。大規模整地大量散，外观悪，Y长按吸込</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767321.html">新手需要记住的事</a></div></div></section><h3 id="掘り残しや掘りすぎた部分を手直しする" class="content-head level-3">⑨修整漏挖或挖多的部分</h3><section class="content-block paragraph-block"><div class="content-copy"><p>最终修整漏挖或挖多的部分吧。掘残部分壊，掘部分整地可以获得埋</p><div class="inline-links"></div></div></section><h4 id="残ったブロックはマウスモードで壊すのが推荐" class="content-head level-4">推荐清掉残留方块</h4><section class="content-block paragraph-block"><div class="content-copy"><p>最终残，操作使壊推荐。指定箇所壊。高箇所簡単壊作業進</p><div class="inline-links"><a class="inline-link" href="./769074.html">操作方法</a></div></div></section><h2 id="整地のコツと注意点" class="content-head level-2">整地注意点</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="#壊したブロックを吸い込んで回収する">
+                    <strong>强化使効率大幅落</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#掘り残しや掘りすぎた部分を手直しする">
+                    <strong>大量処理方法用意</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#残ったブロックはマウスモードで壊すのが推荐">
+                    <strong>近住宝可梦引越</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#整地のコツと注意点">
+                    <strong>PP増</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#强化された-ころがる-が使えないと効率が大幅に落ちる">
+                    <strong>持物所持上限上</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#大量のアイテムの処理方法を用意する">
+                    <strong>ZL按住时1移动</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#近くに住んでいる宝可梦を引っ越しさせる">
+                    <strong>使小回</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h3 id="强化された-ころがる-が使えないと効率が大幅に落ちる" class="content-head level-3">强化使効率大幅落</h3><section class="content-block paragraph-block"><div class="content-copy"><p>整地際，强化使効率大幅落注意必要。通常時壊，壊遅。用意整地吧</p><div class="inline-links"><a class="inline-link" href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></div></div></section><h3 id="大量のアイテムの処理方法を用意する" class="content-head level-3">大量処理方法用意</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12381961/fc6ead60e608fbfe0992b295da7a89a6.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>整地際，整地出大量系処理方法用意吧。大規模整地場合，收纳1(欄60個)程度一杯。使用消費，持込捨推荐</p><div class="inline-links"></div></div></section><h3 id="近くに住んでいる宝可梦を引っ越しさせる" class="content-head level-3">近住宝可梦引越</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12370523/5cb9e6d657e51b200964972a774536f6.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>栖息地近整地行場合，整地前近住宝可梦引越。整地宝可梦変化，栖息地壊防</p><div class="inline-links"><a class="inline-link" href="./767983.html">移动方法引越方法</a></div></div></section><h3 id="ポイントアップでppを増やしておく" class="content-head level-3">PP増</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12362919/6611db1dc7e0016d2dd746dd008cc962.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>整地際百变怪招式使続。PP上限増推荐。購入可以获得</p><div class="inline-links"><a class="inline-link" href="./767305.html">获取方法与PP回复方法</a></div></div></section><h3 id="持ち物の所持上限を上げておく" class="content-head level-3">持物所持上限上</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12365053/e6e8ecb6748890586decebbd662db075.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>整地際，事前持物所持上限上快適整地可以。整地発生大量回収，“背包整理”購入</p><div class="inline-links"><a class="inline-link" href="./767463.html">持物所持上限增加方法背包拡張方法</a></div></div></section><h3 id="zlボタンを押している間は1マスずつ移動できる" class="content-head level-3">ZL按住时1移动</h3><section class="content-block paragraph-block"><div class="content-copy"><p>ZL押移动向固定，1移动横向移动使。使位置定際，整地手直際使用推荐</p><div class="inline-links"></div></div></section><h3 id="でんじふゆう-が使えると小回りがきく" class="content-head level-3">使小回</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12373480/e115399a3b133bf654fda9376f6460cf.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>使小回整地。自由飛回可能，高所残树木取除際便利</p><div class="inline-links"><a class="inline-link" href="./768199.html">学会方法、效果与用法</a><a class="inline-link" href="./768199.html">学会方法、效果与用法</a></div></div></section><h2 id="整地とは" class="content-head level-2">整地</h2><h3 id="フィールドを平らにすること" class="content-head level-3">平</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12382109/b698aae6ff69fdcf4f1691edc97b4371.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>Pokémon Pokopia整地，地形平整指。削，凹埋一面平。整地副産物，大量系可以获得</p><div class="inline-links"><a class="inline-link" href="./768259.html">学会方法、效果与用法</a><a class="inline-link" href="./768193.html">学会方法、效果与用法</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767409.html">百变怪招式一览与学会方法、招式强化方法</a></div></div></section><h3 id="大規模な建築をするために必須の作業" class="content-head level-3">大規模建築必須作業</h3><section class="content-block paragraph-block"><div class="content-copy"><p>整地大規模建築 耕必須作業言。整地地形平建築，建物見栄</p><div class="inline-links"><a class="inline-link" href="./767639.html">农业高效玩法与农田建造方法</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767639.html">农业高效玩法与农田建造方法</a></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

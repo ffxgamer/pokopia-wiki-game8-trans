@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>改築方法与优点</title>
+    <meta name="description" content="查看原文步骤、条件与注意事项。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/769081">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./767357.html">商店购买推荐</a></li><li><a href="./767302.html">住宅建造方法与建筑用途</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./767357.html">商店购买推荐</a>
+          <small>商店购买推荐</small>
+        </li><li>
+          <a href="./767302.html">住宅建造方法与建筑用途</a>
+          <small>住宅建造方法与建筑用途</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#改築の方法">改築方法</a></li><li><a href="#違う建築キットを用意する">違建築用意</a></li><li><a href="#改築したい家の前に建築キットを置く">改築家前建築置</a></li><li><a href="#素材と宝可梦を集める">素材宝可梦集</a></li><li><a href="#改築を始める">改築开开始</a></li><li><a href="#ブロックでできた家は改築できない">家改築</a></li><li><a href="#改築のメリット">改築</a></li><li><a href="#住める宝可梦の数が増える">住宝可梦数増</a></li><li><a href="#住んでいる宝可梦のすみごこちが良くなる">住宝可梦良</a></li><li><a href="#増築することは可以吗">増築可以吗？</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>改築方法与优点</h1>
+            <p class="sub-title">改築方法与优点</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.26 12:02</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》改築方法与优点文章。改築方法汇总。改築知方参考</p></div>
+          </div>
+          <div class="content-wrap"><h2 id="改築の方法" class="content-head level-2">改築方法</h2><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="#違う建築キットを用意する">
+                    <strong>違建築用意</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#家具は改築後も引き継がれる">
+                    <strong>改築家前建築置</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#改築したい家の前に建築キットを置く">
+                    <strong>素材宝可梦集</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="#家の中に宝可梦がいると置けない">
+                    <strong>改築开开始</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="#素材と宝可梦を集める">
+                    <strong>家改築</strong>
+                  </a>
+                </td>
+                <td></td></tr></tbody></table></section><h3 id="違う建築キットを用意する" class="content-head level-3">違建築用意</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12384479/5d33cf2eeaf07969073bdb5fe5683215.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>家改築場合，改築前違建築用意吧。建築 購入可以。改築前小家因此无法请注意</p><div class="inline-links"><a class="inline-link" href="./767357.html">商店购买推荐</a></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767302.html">住宅建造方法与建筑用途</a></div></div></section><h4 id="家具は改築後も引き継がれる" class="content-head level-4">家具改築後引継</h4><section class="content-block paragraph-block"><div class="content-copy"><p>改築中置家具新家残，撤去必要</p><div class="inline-links"></div></div></section><h3 id="改築したい家の前に建築キットを置く" class="content-head level-3">改築家前建築置</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12384480/11fec8407c3134986f544ec7e8363e4a.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>用意建築，改築家前放置吧。本来建築必要物場合建，赤表示。改築可能場合通常通透明表示</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><p>放置建築調，表示确认。家家改築因此无法，家場合，建築置前“百变怪旗”回収推荐</p><div class="inline-links"></div></div></section><h4 id="家の中に宝可梦がいると置けない" class="content-head level-4">家中宝可梦置</h4><section class="content-block paragraph-block"><div class="content-copy"><p>家中宝可梦場合建築置。連歩功能使一度家出</p><div class="inline-links"></div></div></section><h3 id="素材と宝可梦を集める" class="content-head level-3">素材宝可梦集</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12384494/2a66d3f26f588a23047b1b93336db8b9.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>收集建築必要素材宝可梦吧。改築前家共通材料場合，建築時使材料分改築必要素材減，得</p><div class="inline-links"></div></div></section><h3 id="改築を始める" class="content-head level-3">改築开开始</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12384496/cf329aaca94b8cae52ea9dfb5c494a73.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>材料宝可梦揃，改築开始。改築時間。別待，使抵抗本体设置时间操作的影响吧。途中可以</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767333.html">日历修改与时间操作可以吗？</a></div></div></section><h3 id="ブロックでできた家は改築できない" class="content-head level-3">家改築</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12384466/b3b3588e0a31aa19a0f26b0edba81298.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>改築“〇〇”“〇〇”形固有家。家使用建場合，自作場合不可。家大場合，手作業増築吧。家改築，建築背景描判断可以。背景家，改築対応</p><div class="inline-links"></div></div></section><h2 id="改築のメリット" class="content-head level-2">改築</h2><h3 id="住める宝可梦の数が増える" class="content-head level-3">住宝可梦数増</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12384459/a94df02b79a2c48bc95c149357706e36.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>家大，住宝可梦数増。宝可梦家住場合改築。家住人数上限，“〇〇”“〇〇”1匹，“〇〇”2匹。作家場合，関係4匹住可以</p><div class="inline-links"></div></div></section><h3 id="住んでいる宝可梦のすみごこちが良くなる" class="content-head level-3">住宝可梦良</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12384458/a6449e6f7be0e48071518c9fb948cf8b.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>宝可梦，住家大良。大家作，改善环境上場合推荐</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./767513.html">提升方法与优点</a></div></div></section><h2 id="増築することは可以吗" class="content-head level-2">増築可以吗？</h2><h3 id="ブロックでできた家は可能" class="content-head level-3">家可能</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12384455/52d266561586ab8bb22208c5b5a32c7a.webp/original" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>家，使建設家自作家手作業増築可以。増築用，请注意</p><div class="inline-links"></div></div></section><section class="content-block paragraph-block"><div class="content-copy"><div class="inline-links"><a class="inline-link" href="./768198.html">家判定条件家制作方法</a></div></div></section><h3 id="葉っぱのおうちなど形が固定のものはできない" class="content-head level-3">葉形固定</h3><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12384453/4b178626cc03c1e246e0050146cb469f.webp/original" loading="lazy" alt="文章配图" /><div class="content-copy"><p>形固有増築。家大場合改築吧</p><div class="inline-links"></div></div></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>

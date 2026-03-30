@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>城镇攻略流程3</title>
+    <meta name="description" content="查看原文完整攻略、数据表、流程说明和评论区补充信息。" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #ffffff;
+        --line: #d9d9d9;
+        --ink: #333333;
+        --muted: #666666;
+        --accent: #d9a300;
+        --soft: #f8f8f8;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      a { color: inherit; text-decoration: none; }
+      .shell { width: min(calc(100% - 24px), 1160px); margin: 0 auto; }
+      .top {
+        padding: 8px 0 12px;
+        border-bottom: 1px solid #ececec;
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .crumbs a {
+        color: #1a5fb4;
+      }
+      .page {
+        display: grid;
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px 0 40px;
+      }
+      .sidebar-box,
+      .main-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+      }
+      .sidebar-box {
+        margin-bottom: 14px;
+      }
+      .side-title {
+        padding: 10px 12px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .side-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .side-list li {
+        margin: 0;
+        border-top: 1px solid #ededed;
+      }
+      .side-list a,
+      .side-list span {
+        display: block;
+        padding: 10px 12px;
+        line-height: 1.5;
+      }
+      .side-list li small {
+        display: block;
+        padding: 0 12px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .ranking-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ranking-list li {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 8px;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        align-items: start;
+      }
+      .ranking-no {
+        color: var(--muted);
+        font-weight: 700;
+        text-align: center;
+      }
+      .ranking-list a {
+        color: #1a5fb4;
+        line-height: 1.5;
+      }
+      .main-box {
+        padding: 0 14px 18px;
+      }
+      .main-header {
+        padding: 10px 0 14px;
+        border-bottom: 1px solid #ececec;
+      }
+      .main-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+      .sub-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .meta-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 0 12px;
+        margin-bottom: 12px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border: 1px solid #dddddd;
+        background: #fafafa;
+        color: #555;
+      }
+      .author {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-line {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .lead {
+        line-height: 1.8;
+      }
+      .lead p {
+        margin: 0 0 10px;
+      }
+      .content-wrap {
+        padding-top: 12px;
+      }
+      .content-head {
+        margin: 16px 0 8px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid #3b3b3b;
+        line-height: 1.4;
+      }
+      .level-2 { font-size: 24px; }
+      .level-3 { font-size: 18px; }
+      .level-4 {
+        font-size: 15px;
+        color: var(--ink);
+        border-bottom: 1px solid #ddd;
+      }
+      .content-block {
+        padding: 8px 0;
+      }
+      .content-copy {
+        display: grid;
+        gap: 10px;
+      }
+      .content-copy p {
+        margin: 0;
+        line-height: 1.8;
+      }
+      .content-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 12px;
+        border: 1px solid #efefef;
+      }
+      .inline-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .inline-link {
+        color: #1a5fb4;
+        font-weight: 400;
+      }
+      .more-link {
+        display: block;
+        padding: 10px 12px;
+        border-top: 1px solid #ededed;
+        color: #1a5fb4;
+        text-align: right;
+      }
+      .mirror-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: #fff;
+      }
+      .mirror-table td {
+        vertical-align: top;
+        border: 1px solid var(--line);
+        padding: 0;
+      }
+      .table-link {
+        display: grid;
+        gap: 6px;
+        min-height: 72px;
+        padding: 12px;
+      }
+      .table-link strong {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .table-link small {
+        color: #87928d;
+      }
+      .flow-block {
+        display: grid;
+        gap: 12px;
+      }
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 10px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ededed;
+      }
+      .flow-step-no {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #f2f2f2;
+        border: 1px solid #d0d0d0;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .flow-step-body {
+        display: grid;
+        gap: 8px;
+      }
+      .flow-step-body h5 {
+        margin: 0;
+        font-size: 15px;
+      }
+      @media (max-width: 860px) {
+        .page { grid-template-columns: 1fr; }
+        .mirror-table, .mirror-table tbody, .mirror-table tr, .mirror-table td {
+          display: block;
+          width: 100%;
+        }
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="top">
+        <nav class="crumbs">
+          <a href="../index.html">Game8 〉Pokémon Pokopia</a>
+          <a href="https://game8.jp/pocoapokemon/767519">打开原站页面</a>
+        </nav>
+      </div>
+      <section class="page">
+        <aside>
+          <div class="sidebar-box">
+            <div class="side-title">排行榜</div>
+            <ol class="ranking-list"><li><span class="ranking-no">1</span><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><span class="ranking-no">2</span><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><span class="ranking-no">3</span><a href="./768274.html">供物效果与触发方式</a></li><li><span class="ranking-no">4</span><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><span class="ranking-no">5</span><a href="./767692.html">料理制作方法一览与推荐食谱（全 24 种）</a></li></ol>
+            <a class="more-link" href="https://game8.jp/pocoapokemon/ranking">查看更多</a>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">攻略菜单</div>
+            <ul class="side-list"><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767282.html">剧情攻略流程一览</a></li><li><a href="./767901.html">通关后要素</a></li><li><a href="./767402.html">宝可梦图鉴一览（全 303 种）</a></li><li><a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></li><li><a href="./767405.html">全道具一览（共 714 种）</a></li><li><a href="./767586.html">城镇前往方法与解锁条件</a></li><li><a href="./767482.html">传说宝可梦一览与获取方法</a></li><li><a href="./767281.html">前期高效推进方法</a></li><li><a href="./767321.html">新手需要记住的事</a></li><li><a href="./770185.html">官方岛屿前往方法与地址一览</a></li><li><a href="./767646.html">城镇收集要素汇总</a></li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">相关文章</div>
+            <ul class="side-list"><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767282.html">剧情攻略流程一览</a>
+          <small>剧情攻略流程一览</small>
+        </li><li>
+          <a href="./767901.html">通关后要素</a>
+          <small>通关后要素</small>
+        </li><li>
+          <a href="./767402.html">宝可梦图鉴一览（全 303 种）</a>
+          <small>宝可梦图鉴一览（全 303 种）</small>
+        </li><li>
+          <a href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a>
+          <small>栖息地图鉴与 212 种出现宝可梦一览</small>
+        </li><li>
+          <a href="./767405.html">全道具一览（共 714 种）</a>
+          <small>全道具一览（共 714 种）</small>
+        </li><li>
+          <a href="./767586.html">城镇前往方法与解锁条件</a>
+          <small>城镇前往方法与解锁条件</small>
+        </li><li>
+          <a href="./767482.html">传说宝可梦一览与获取方法</a>
+          <small>传说宝可梦一览与获取方法</small>
+        </li><li>
+          <a href="./767281.html">前期高效推进方法</a>
+          <small>前期高效推进方法</small>
+        </li><li>
+          <a href="./767321.html">新手需要记住的事</a>
+          <small>新手需要记住的事</small>
+        </li><li>
+          <a href="./770185.html">官方岛屿前往方法与地址一览</a>
+          <small>官方岛屿前往方法与地址一览</small>
+        </li><li>
+          <a href="./767646.html">城镇收集要素汇总</a>
+          <small>城镇收集要素汇总</small>
+        </li></ul>
+          </div>
+          <div class="sidebar-box">
+            <div class="side-title">目录</div>
+            <ul class="side-list"><li><a href="#攻略流程">攻略流程</a></li><li><a href="#ゲート突入-パソコン復旧までの攻略流程">突入～復旧攻略流程</a></li><li><a href="#ニャースのおねがいごと-巨蔓藤はかせのおねがいごとまでの攻略流程">～巨蔓藤攻略流程</a></li><li><a href="#ポッチャマのおねがいごと-なみのり習得までの攻略流程">～習得攻略流程</a></li><li><a href="#城镇を明るくしよう-の攻略流程">城镇明！攻略流程</a></li><li><a href="#剧情攻略記事一览">剧情攻略文章一览</a></li></ul>
+          </div>
+        </aside>
+        <main class="main-box">
+          <div class="main-header">
+            <h1>城镇攻略流程3</h1>
+            <p class="sub-title">城镇攻略流程3</p>
+            <div class="meta-strip">
+              <p class="author">《Pokémon Pokopia》攻略组</p>
+              <div class="meta-line">最后更新：2026.03.27 12:47</div>
+              <span class="meta-badge">Game8 本地镜像</span>
+            </div>
+            <div class="lead"><p>《Pokémon Pokopia》城镇攻略文章。城镇攻略当然，伙伴宝可梦说明。 宝可梦城镇想了解的话可以参考本文</p></div>
+          </div>
+          <div class="content-wrap"><section class="content-block paragraph-block"><img class="content-image" src="https://img.game8.jp/12367108/772d33ae8772ea21726c1941b12e1716.webp/show" loading="lazy" alt="文章配图" /></section><section class="content-block paragraph-block"><div class="content-copy"><p>《Pokémon Pokopia》城镇攻略文章。城镇攻略当然，伙伴宝可梦说明。 宝可梦城镇想了解的话可以参考本文</p><div class="inline-links"></div></div></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767646.html">
+                    <strong>城镇收集要素汇总</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767790.html">
+                    <strong>城镇明攻略要做的事</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767309.html">
+                    <strong>城镇攻略流程2</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767552.html">
+                    <strong>城镇攻略流程4</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h2 id="攻略流程" class="content-head level-2">攻略流程</h2><h3 id="ゲート突入-パソコン復旧までの攻略流程" class="content-head level-3">突入～復旧攻略流程</h3><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">1</div>
+              <div class="flow-step-body">
+                <h5>荒野城镇東側向</h5>
+                <img class="content-image" src="https://img.game8.jp/12368184/291fddc9104958e9e20353ff9c0cd6d7.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 一度荒野城镇戻，東側前往吧。中入巨蔓藤</p><div class="inline-links"><a class="inline-link" href="./767510.html">次行？</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">2</div>
+              <div class="flow-step-body">
+                <h5>先進活动発生</h5>
+                <img class="content-image" src="https://img.game8.jp/12368473/f15d88324fc36f4e2a4ed67c5e17b30e.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>城镇城镇入，少先進活动会触发</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">3</div>
+              <div class="flow-step-body">
+                <h5>巨蔓藤連西橋進</h5>
+                <img class="content-image" src="https://img.game8.jp/12368475/2fb565c962b45d007c29e535396dfeef.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>巨蔓藤連西側端前往吧。橋向活动発生，壊橋直</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">4</div>
+              <div class="flow-step-body">
+                <h5>制作台作，橋繋</h5>
+                <img class="content-image" src="https://img.game8.jp/12368481/48546734d9f7f64fb2b0274311052898.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>近制作台 作，壊橋繋。素材無場合持繋良。 橋横2繋需要</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/770754">查看原文 770754</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">5</div>
+              <div class="flow-step-body">
+                <h5>巨蔓藤，对话</h5>
+                <img class="content-image" src="https://img.game8.jp/12368488/90a3e012c636d3f57506782faa98d514.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>橋渡巨蔓藤，吹出出与其对话吧。巨蔓藤对话后復旧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">6</div>
+              <div class="flow-step-body">
+                <h5>宝可梦裏水止</h5>
+                <img class="content-image" src="https://img.game8.jp/12368494/d535abb6e9159431dda1873e4195718c.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>宝可梦裏流水路置水止。水止水浸解消</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">7</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托，調</h5>
+                <img class="content-image" src="https://img.game8.jp/12368500/ed9047519aed0c9dbad9eee4da118c6f.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与巨蔓藤博士对话并接取委托调查吧。調復旧，重要宝可梦修复！”开始</p><div class="inline-links"><a class="inline-link" href="./767420.html">宝可梦修复方法</a></div></div>
+              </div>
+            </article>
+            </section><h3 id="ニャースのおねがいごと-巨蔓藤はかせのおねがいごとまでの攻略流程" class="content-head level-3">～巨蔓藤攻略流程</h3><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">1</div>
+              <div class="flow-step-body">
+                <h5>话，後</h5>
+                <img class="content-image" src="https://img.game8.jp/12368507/eb94d59f94b359ea748b5f2e37e83e10.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与巨蔓藤近。对话。对话后移动，後跟着前进吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">2</div>
+              <div class="flow-step-body">
+                <h5>再度话</h5>
+                <img class="content-image" src="https://img.game8.jp/12368515/4b2624bab53e7e548b1a6e61f5230777.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与，水中对话。水中对话后开始</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">3</div>
+              <div class="flow-step-body">
+                <h5>家裏水止</h5>
+                <img class="content-image" src="https://img.game8.jp/12368518/7afbe7364e56cdde7de398357e616439.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 家裏水止。水止水浸解消，即可完成</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">4</div>
+              <div class="flow-step-body">
+                <h5>2匹宝可梦伙伴</h5>
+                <img class="content-image" src="https://img.game8.jp/12368520/61ef30a14eead428f8178849b9dc27da.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12368533/bb42e4d9a393f94cce841fe8badbe05e.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12368535/d63e9b36d9214352cbd6bbb9af8683c8.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>栖息地作2匹宝可梦让它成为伙伴吧。4草丛“ 黄色草丛 拡大 ”，树木+4草丛“ 树木黄色草丛 拡大 ”作因此可以，作2匹宝可梦让它成为伙伴吧</p><div class="inline-links"><a class="inline-link" href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">5</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12368543/dbf96945c3f565b68f57b2533fc3d921.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>黄色吹出因此可以，话去领取吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">6</div>
+              <div class="flow-step-body">
+                <h5>2個作，家放置</h5>
+                <img class="content-image" src="https://img.game8.jp/12368545/bfd2e2ea112b71d117f0f9efcfb6217a.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>制作台2個作，家放置吧。素材可以在附近洞窟洞穴采集</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768369">查看原文 768369</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">7</div>
+              <div class="flow-step-body">
+                <h5>再度与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12368576/ae3fbbf80f05addc87489ac306e99bd1.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>再度话，去领取吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">8</div>
+              <div class="flow-step-body">
+                <h5>黄色草丛作，伙伴</h5>
+                <img class="content-image" src="https://img.game8.jp/12368578/2713c381da109e3f26f56b749b9d4c27.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12368582/75a580f5a1138622628be805b5e5146e.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>水边栖息地“ 黄色草丛 拡大 ”作，让它成为伙伴吧</p><div class="inline-links"><a class="inline-link" href="./767402.html">宝可梦图鉴一览（全 303 种）</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">9</div>
+              <div class="flow-step-body">
+                <h5>话，泥位置連</h5>
+                <img class="content-image" src="https://img.game8.jp/12368584/a7904a12bd569e7010e0fe5d3805456a.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与伙伴对话。话家前泥位置連，泡</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">10</div>
+              <div class="flow-step-body">
+                <h5>水枪泥流</h5>
+                <img class="content-image" src="https://img.game8.jp/12368588/33d808113ea13a4edf3f5b3fc63b3612.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>泥泡洗流吧。家面前的泥洗流需要</p><div class="inline-links"><a class="inline-link" href="./768019.html">水枪学会方法、效果与用法</a><a class="inline-link" href="./767409.html">百变怪招式一览与学会方法、招式强化方法</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">11</div>
+              <div class="flow-step-body">
+                <h5>向相关角色报告</h5>
+                <img class="content-image" src="https://img.game8.jp/12368590/7e59bd16c4e343aa8fd80fe0a2f91938.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>泥洗流去报告吧。报告即可完成</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">12</div>
+              <div class="flow-step-body">
+                <h5>再度与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12368594/ec9d61e4c43e875bdcf0bbbbe2dc3c85.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>再度话，去领取吧。对话后</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/770588">查看原文 770588</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">13</div>
+              <div class="flow-step-body">
+                <h5>作，伙伴</h5>
+                <img class="content-image" src="https://img.game8.jp/12368606/772ab32ce3ab691d707d7f8b07ad7d36.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 栖息地作，让它成为伙伴吧。作家具家前，用意作可以</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768892">查看原文 768892</a><a class="inline-link" href="./768293.html">获取方法与用途</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">14</div>
+              <div class="flow-step-body">
+                <h5>加工</h5>
+                <img class="content-image" src="https://img.game8.jp/12368611/7067755aacdea265164dd03cbad18ee5.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12368629/becc8c828f3b55fb47e3c886ad3f4eb3.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>话 加工。附近可以获得。 焼少時間。附近海沿人間記録“：”取</p><div class="inline-links"><a class="inline-link" href="./768335.html">高效获取方法与用途</a><a class="inline-link" href="./769158.html">素材集高效方法</a><a class="inline-link" href="./767646.html">城镇收集要素汇总</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">15</div>
+              <div class="flow-step-body">
+                <h5>作，家放置</h5>
+                <img class="content-image" src="https://img.game8.jp/12368631/be4f307b0356150d99bf12b4c5e4d7e6.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>制作台使制作吧。作家中放置吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">16</div>
+              <div class="flow-step-body">
+                <h5>花植</h5>
+                <img class="content-image" src="https://img.game8.jp/12368632/726241197d03536c0e21fab12c1029b7.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>放置花植。種植育可以，使花直接植可以</p><div class="inline-links"><a class="inline-link" href="./767409.html">百变怪招式一览与学会方法、招式强化方法</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">17</div>
+              <div class="flow-step-body">
+                <h5>向相关角色报告</h5>
+                <img class="content-image" src="https://img.game8.jp/12368634/95d42fd8e8c24d3ac4b2b8525204b28d.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>花植去报告吧。报告即可完成</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">18</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12368635/d3bf34eb348ef2862c8fd53ef7d5529b.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与巨蔓藤博士对话并接取委托，去领取吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">19</div>
+              <div class="flow-step-body">
+                <h5>任意家建，家具3放置</h5>
+                <img class="content-image" src="https://img.game8.jp/12368638/8a3584c2c94fcdf9444d24c258bb386d.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12368535/d63e9b36d9214352cbd6bbb9af8683c8.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>城镇任意家建，家中家具3放置吧。家何，推荐。 “ 树木黄色草丛 拡大 ”出現建物作必要，宝可梦，伙伴</p><div class="inline-links"><a class="inline-link" href="./768198.html">家判定条件家制作方法</a><a class="inline-link" href="./767302.html">住宅建造方法与建筑用途</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">20</div>
+              <div class="flow-step-body">
+                <h5>巨蔓藤报告</h5>
+                <img class="content-image" src="https://img.game8.jp/12368641/820740b71ddb884667165165f63ee57d.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>家具放置完了，巨蔓藤去报告吧</p><div class="inline-links"><a class="inline-link" href="./771008.html">家具一览</a></div></div>
+              </div>
+            </article>
+            </section><h3 id="ポッチャマのおねがいごと-なみのり習得までの攻略流程" class="content-head level-3">～習得攻略流程</h3><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">1</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369027/ed14c4b9098d4c64cb406d14b137b74e.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>话，去领取吧。对话后栖息地得可以</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768898">集積所</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">2</div>
+              <div class="flow-step-body">
+                <h5>集積所作，伙伴</h5>
+                <img class="content-image" src="https://img.game8.jp/12369029/215ed4c05d8cc7828176462f0269c6be.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12369036/cc945caf83f8808a0b08b62900eda2ab.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>栖息地作， 让它成为伙伴吧。“集積所”“入”。作可以。 拡大 “入”噴水附近拾。周围落拾思，制作台作成可以</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768898">集積所</a><a class="inline-link" href="https://game8.jp/pocoapokemon/767851">查看原文 767851</a><a class="inline-link" href="https://game8.jp/pocoapokemon/768402">查看原文 768402</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">3</div>
+              <div class="flow-step-body">
+                <h5>渡，铁可以获得</h5>
+                <img class="content-image" src="https://img.game8.jp/12369037/0b8f9213f32a1a6116e299b5548386e9.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>伙伴渡，铁可以获得吧。铁可以获得</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">4</div>
+              <div class="flow-step-body">
+                <h5>作放置</h5>
+                <img class="content-image" src="https://img.game8.jp/12369039/1064fbd87ef76acd96e9e3ff14c807f3.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>制作台作放置吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">5</div>
+              <div class="flow-step-body">
+                <h5>向相关角色报告</h5>
+                <img class="content-image" src="https://img.game8.jp/12369040/feee7be2eb32102183899002914c30b8.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>放置去报告吧。报告即可完成</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">6</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369042/3adc2701cf3c916a4f0a2f8277b4f1d6.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>巨蔓藤近话，去领取吧。对话后栖息地得可以</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768905">花畑</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">7</div>
+              <div class="flow-step-body">
+                <h5>花畑作，伙伴</h5>
+                <img class="content-image" src="https://img.game8.jp/12369044/8d453519b0621b2dd351a7b5cb857901.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>栖息地“花畑”作，让它成为伙伴吧。“花畑”花4作可以。 宝可梦右進先，洞窟横“水枪”掃除吧。掃除，栖息地“花畑”作成，推荐</p><div class="inline-links"><a class="inline-link" href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">8</div>
+              <div class="flow-step-body">
+                <h5>位置連</h5>
+                <img class="content-image" src="https://img.game8.jp/12369047/2c43e759e2d6232296021c758c146064.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>伙伴位置連。近带在身边效果，灯可以。 灯即可完成</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">9</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369049/fa400b6ca8f70b6f94e7d2995d0eab26.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>话，去领取吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">10</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369051/5b1602d0df63f3d52f767a18e0f79591.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与话，巨蔓藤对话。巨蔓藤对话后栖息地得可以</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768901">查看原文 768901</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">11</div>
+              <div class="flow-step-body">
+                <h5>作，伙伴</h5>
+                <img class="content-image" src="https://img.game8.jp/12368951/8399c473bb5f8c50e1a65fd38d783ed6.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 栖息地作，让它成为伙伴吧。海沿“树木”放置作可以。 地图北西，树木位置。運，簡単栖息地作。新作場合，树木“居合斩”切，苗树木運搬可以。 ，海水判定，图鉴並栖息地場合。際，画像離岛作判定，推荐</p><div class="inline-links"><a class="inline-link" href="./768196.html">学会方法、效果与用法</a><a class="inline-link" href="./767333.html">日历修改与时间操作可以吗？</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">12</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369052/d1f5d3efbeb3ba2226438ecdcee81fae.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>伙伴话，去领取吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">13</div>
+              <div class="flow-step-body">
+                <h5>周围泥洗流</h5>
+                <img class="content-image" src="https://img.game8.jp/12369054/faaea1ab4fbad9898cd0c05f2dce8102.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>連周辺泥80分洗流吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">14</div>
+              <div class="flow-step-body">
+                <h5>向相关角色报告</h5>
+                <img class="content-image" src="https://img.game8.jp/12369055/c0eef3d33f696a33467c3e6d717f4fff.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>80分泥洗流去报告吧。报告覚，海自由泳可以</p><div class="inline-links"><a class="inline-link" href="./767409.html">百变怪招式一览与学会方法、招式强化方法</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">15</div>
+              <div class="flow-step-body">
+                <h5>话，後</h5>
+                <img class="content-image" src="https://img.game8.jp/12369059/d477425297e98893a5a53c60f841afcf.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与泳对话。会话後，移动，後跟着前进吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">16</div>
+              <div class="flow-step-body">
+                <h5>変身话</h5>
+                <img class="content-image" src="https://img.game8.jp/12369061/21543b63c327c010033d69ab1bd1be02.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与泳开始変身，对话</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">17</div>
+              <div class="flow-step-body">
+                <h5>後</h5>
+                <img class="content-image" src="https://img.game8.jp/12369064/b7219233b8f59be981fb557a68522667.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>对话后移动开始，後追。PP，残PP注意後跟着前进吧</p><div class="inline-links"><a class="inline-link" href="./767305.html">获取方法与PP回复方法</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">18</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话</h5>
+                <img class="content-image" src="https://img.game8.jp/12369072/ccf35beb2ce390306a95ba8b35ca695c.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与止对话。立止对话即可完成</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">19</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托，調</h5>
+                <img class="content-image" src="https://img.game8.jp/12369073/9e740a17fdde2a17224a1edddd6cd9f8.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与宝可梦近巨蔓藤对话。巨蔓藤对话后环境3目指言。調現在环境调查吧。 环境3以上場合次流程進，足場合宝可梦伙伴，宝可梦环境整环境</p><div class="inline-links"><a class="inline-link" href="./767551.html">环境高效提升方法</a></div></div>
+              </div>
+            </article>
+            </section><h3 id="城镇を明るくしよう-の攻略流程" class="content-head level-3">城镇明！攻略流程</h3><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">1</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369340/f8f23a5208cb0b938c3cfaaaa615027e.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>宝可梦近话，去领取吧。达成柱補修出来必要，先用意</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">2</div>
+              <div class="flow-step-body">
+                <h5>連，南東側音発生源向</h5>
+                <img class="content-image" src="https://img.game8.jp/12369478/eb0855701865d1b74693123284a7bf18.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>連，南東側音発生源前往吧。途中崩橋補修渡直</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">3</div>
+              <div class="flow-step-body">
+                <h5>壁壊調</h5>
+                <img class="content-image" src="https://img.game8.jp/12369482/d8f41840c073e959df668faa3c590842.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>音発生源向，壁壊中调查吧。調即可完成</p><div class="inline-links"><a class="inline-link" href="./768274.html">供物效果与触发方式</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">4</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369486/b2d19af2e66a5cee8ccb1c07bbf3deb1.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与宝可梦戻，巨蔓藤对话</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">5</div>
+              <div class="flow-step-body">
+                <h5>巨蔓藤元連</h5>
+                <img class="content-image" src="https://img.game8.jp/12369488/4b66c792776ed86eb80dd909bba49b44.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与巨蔓藤博士对话并接取委托，巨蔓藤元带在身边。 元先進場合，洞窟入口広先進可以</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">6</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369492/e6a399ed89a2e0a7061942ab51b74739.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与巨蔓藤吹出黄色，巨蔓藤对话。巨蔓藤对话后重要“城镇明！”开始</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">7</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369495/a2d61d10df92a8e32c18d27b285ae79c.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>近话，去领取吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">8</div>
+              <div class="flow-step-body">
+                <h5>連3明</h5>
+                <img class="content-image" src="https://img.game8.jp/12369497/1c918d1ebfb5250628db040a59e39998.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 連3明。明城镇灯問題</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">9</div>
+              <div class="flow-step-body">
+                <h5>向相关角色报告</h5>
+                <img class="content-image" src="https://img.game8.jp/12369498/f177bb7106df1fbd575ba8efcc0133e1.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>3明去报告吧。报告即可完成</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">10</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话</h5>
+                <img class="content-image" src="https://img.game8.jp/12369499/1429c117d462efe40db7c6ebbb3a11f2.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与对话。对话后現在明点数确认可以</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">11</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369500/b81b4923d6106f199c4026c72b2d7a7c.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>近话，去领取吧。对话后栖息地得可以</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768882">飯</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">12</div>
+              <div class="flow-step-body">
+                <h5>飯作</h5>
+                <img class="content-image" src="https://img.game8.jp/12369501/e8fdca70f991edf4678184c4004dbea7.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>栖息地“飯”制作吧。“飯”树木周“焚火”果物“皿”放置作可以</p><div class="inline-links"><a class="inline-link" href="./767403.html">栖息地图鉴与 212 种出现宝可梦一览</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">13</div>
+              <div class="flow-step-body">
+                <h5>向相关角色报告</h5>
+                <img class="content-image" src="https://img.game8.jp/12369504/b7aac7b9f84756e8aee90658c3700972.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>“飯”完成去报告吧。报告即可完成</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">14</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369506/8831db62477b9ef3a7bbf11e61b608e3.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与巨蔓藤对话。巨蔓藤对话后活动会触发</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">15</div>
+              <div class="flow-step-body">
+                <h5>倒在地上的宝可梦元向</h5>
+                <img class="content-image" src="https://img.game8.jp/12369507/144ddc44590fb010ff53ac1a4509e5ac.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>倒在地上的宝可梦身边并。倒在地上的宝可梦調活动発生，会成为伙伴</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">16</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369512/15b58b8a1f1a1e9be3e9a8230c6d9338.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>待後，洞窟话去领取吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">17</div>
+              <div class="flow-step-body">
+                <h5>作，洞窟放置</h5>
+                <img class="content-image" src="https://img.game8.jp/12369515/1cea1f08cad0d978e7a72d8b9b1d96c8.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>制作台作，洞窟放置吧。作可以。拾出来</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768398">查看原文 768398</a><a class="inline-link" href="https://game8.jp/pocoapokemon/768368">查看原文 768368</a><a class="inline-link" href="./767371.html">地图攻略与收藏一览</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">18</div>
+              <div class="flow-step-body">
+                <h5>連，明</h5>
+                <img class="content-image" src="https://img.game8.jp/12369517/5f90d8a69663159147a26dd96857fbf1.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>放置，連明。明付即可完成</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">19</div>
+              <div class="flow-step-body">
+                <h5>後，对话</h5>
+                <img class="content-image" src="https://img.game8.jp/12369519/23c4f79d42c6de88edb00a497bf4ae67.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>移动，後跟着前进吧。立止，吹出出与其对话吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">20</div>
+              <div class="flow-step-body">
+                <h5>風力発電電柱繋</h5>
+                <img class="content-image" src="https://img.game8.jp/12369521/d81408d61514084114347d22f4802c3a.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 近電柱回収，風力発電電柱繋。薄線状態電柱放置風力発電繋状態電柱置可以</p><div class="inline-links"><a class="inline-link" href="./768180.html">電気通方電柱繋方</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">21</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话</h5>
+                <img class="content-image" src="https://img.game8.jp/12369525/8c8443bed881fa83a21e4dd3a46b7b33.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与電気通電柱放置，对话</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">22</div>
+              <div class="flow-step-body">
+                <h5>放置</h5>
+                <img class="content-image" src="https://img.game8.jp/12369528/337674f38ea6adcba9a78e3fd14d974e.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>话附近回収，電気通電柱近放置吧。電柱放置明城镇照可以</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/770440">查看原文 770440</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">23</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369529/e078b4510698f36a9fa91db7414f4b84.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>洞窟周辺话，去领取吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">24</div>
+              <div class="flow-step-body">
+                <h5>連火力発電探起動</h5>
+                <img class="content-image" src="https://img.game8.jp/12369533/5072509493e6a39cf5bd39f95d052868.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12369539/db827c618f799533d8fe82b25c4ee9fc.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 連，地图南西側 探吧。中材料入起動即可完成。 ，火力発電機近金色，可以获得。後剧情使，必回収複数個作成。铁足場合，“燃”渡変換， 向采掘吧</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768475">火力発電</a><a class="inline-link" href="./767647.html">城镇收集要素汇总</a><a class="inline-link" href="./767510.html">次行？</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">25</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369546/ae3d2d9a25640f46f0be8b478ff75225.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>洞窟周辺话，去领取吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">26</div>
+              <div class="flow-step-body">
+                <h5>連水力発電探</h5>
+                <img class="content-image" src="https://img.game8.jp/12369551/aa0ff1544ca761098540eb45de104876.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 連， 探吧。水力発電地图南東側</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768488">水力発電</a><a class="inline-link" href="./768708.html">水車回方制作方法回</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">27</div>
+              <div class="flow-step-body">
+                <h5>水流水力発電動</h5>
+                <img class="content-image" src="https://img.game8.jp/12369556/8ec7beedc542ac2293894efdfff3df3b.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 水力発電北側水止破壊，水流吧。水流水力発電動電力会触发。 水力発電動即可完成</p><div class="inline-links"><a class="inline-link" href="./768193.html">学会方法、效果与用法</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">28</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话并接取委托</h5>
+                <img class="content-image" src="https://img.game8.jp/12369560/8eccf22839ad25423fe14557cd282dc6.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>洞窟周辺话，去领取吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">29</div>
+              <div class="flow-step-body">
+                <h5>連灯台向</h5>
+                <img class="content-image" src="https://img.game8.jp/12369561/94dc73ac613c263f9ebacd47aa354ac4.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>連地图東側灯台前往吧。屋上電柱屋上光可以。 灯台上登即可完成</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">30</div>
+              <div class="flow-step-body">
+                <h5>城镇照花点数100点</h5>
+                <img class="content-image" src="https://img.game8.jp/12369612/e46dd6eadc1ddcface105c0eefdbdf0e.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12369610/28211f41435ebdf42b22fb5b15249791.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>城镇明上主方法 置通電 炎系飾置着火 明系飾放置 既設完成 ，炎使城镇全体照吧。城镇探索光多数。探電柱城镇照。 ，完成時間手間，地图中央既設完成，10点分明因此可以推荐</p><div class="inline-links"><a class="inline-link" href="./769396.html">喜好环境宝可梦制作方法</a><a class="inline-link" href="https://game8.jp/pocoapokemon/771903">查看原文 771903</a><a class="inline-link" href="./767333.html">日历修改与时间操作可以吗？</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">31</div>
+              <div class="flow-step-body">
+                <h5>话，後</h5>
+                <img class="content-image" src="https://img.game8.jp/12369751/deb8c8f557299fc4cf3d2fbdb0055c3b.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与城镇照花点数100点，洞窟对话。对话后移动，後跟着前进吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">32</div>
+              <div class="flow-step-body">
+                <h5>再度话</h5>
+                <img class="content-image" src="https://img.game8.jp/12369752/a6ae7193a05d5e2a4140bb95e6b76191.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与後，黄色吹出出对话</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">33</div>
+              <div class="flow-step-body">
+                <h5>装置電柱繋電力送</h5>
+                <img class="content-image" src="https://img.game8.jp/12369760/94791fcf76ce9d81795cc65cc7af8e8e.webp/show" loading="lazy" alt="文章配图" /><img class="content-image" src="https://img.game8.jp/12369766/c1adcb1bf7f33f04ffd253acc92fc22a.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>话，各発電機装置電柱使繋。発電機装置電力送，装置起動可以。特火力発電電力量大，大量電力送因此可以火力発電繋推荐。 購入“火力発電”機械建築，比較的游玩配電因此可以推荐</p><div class="inline-links"><a class="inline-link" href="https://game8.jp/pocoapokemon/768475">▶︎火力発電获取方法与用途查看</a><a class="inline-link" href="./768708.html">水車回方制作方法回</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">34</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话</h5>
+                <img class="content-image" src="https://img.game8.jp/12369768/d23fb6d8e4c34c246ad779cc32988447.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与発電機装置電柱对话。对话后装置上移动。再度与其对话吧</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">35</div>
+              <div class="flow-step-body">
+                <h5>与相关角色对话</h5>
+                <img class="content-image" src="https://img.game8.jp/12369769/10590fc0292b49942b6af9e2d40329a4.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与话，城镇全体照对话。对话后活动会触发</p><div class="inline-links"></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">36</div>
+              <div class="flow-step-body">
+                <h5>段差登话</h5>
+                <img class="content-image" src="https://img.game8.jp/12369771/5f66253994ffef53760bca6a6d046444.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>与洞窟周围段差登，对话。对话后活动発生，上，重要即可完成。 以降食物供良效果得，覚</p><div class="inline-links"><a class="inline-link" href="./768274.html">供物效果与触发方式</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block flow-block">
+            <article class="flow-step">
+              <div class="flow-step-no">37</div>
+              <div class="flow-step-body">
+                <h5>城镇北側向</h5>
+                <img class="content-image" src="https://img.game8.jp/12369896/ab4c4ccdb81dfbaba11ff2bb33c13416.webp/show" loading="lazy" alt="文章配图" />
+                <div class="content-copy"><p>拡大 重要城镇北側前往吧。上，開，次城镇行。城镇北時点通</p><div class="inline-links"><a class="inline-link" href="./767510.html">次行？</a></div></div>
+              </div>
+            </article>
+            </section><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767309.html">
+                    <strong>城镇攻略流程2</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767552.html">
+                    <strong>城镇攻略流程4</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section><h2 id="相关文章" class="content-head level-2">相关文章</h2><h3 id="剧情攻略記事一览" class="content-head level-3">剧情攻略文章一览</h3><section class="content-block table-block"><table class="mirror-table"><tbody><tr>
+                <td>
+                  <a class="table-link" href="./767282.html">
+                    <strong>剧情攻略流程一览</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767280.html">
+                    <strong>荒野城镇攻略流程 1</strong>
+                  </a>
+                </td>
+                </tr><tr>
+                <td>
+                  <a class="table-link" href="./767309.html">
+                    <strong>城镇攻略流程2</strong>
+                  </a>
+                </td>
+                
+                <td>
+                  <a class="table-link" href="./767552.html">
+                    <strong>城镇攻略流程4</strong>
+                  </a>
+                </td>
+                </tr></tbody></table></section></div>
+        </main>
+      </section>
+    </div>
+  </body>
+</html>
