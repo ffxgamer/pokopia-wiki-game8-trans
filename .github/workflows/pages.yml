@@ -37,6 +37,7 @@ jobs:
           mkdir -p _site
           cp index.html _site/
           cp pages.json _site/
+          cp -R assets _site/
           cp -R pages _site/
           touch _site/.nojekyll
 
