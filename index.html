@@ -280,9 +280,23 @@
 
       .entry {
         display: grid;
-        gap: 6px;
+        gap: 10px;
         min-height: 72px;
         padding: 12px;
+      }
+
+      .entry-thumb {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-bottom: 1px solid #ececec;
+        background: #f7f7f7;
+      }
+
+      .entry-content {
+        display: grid;
+        gap: 6px;
       }
 
       .entry strong {
@@ -568,6 +582,61 @@
         ["评测与游玩感想", "https://game8.jp/switch2/767398"],
       ];
 
+      const previewMap = {
+        "767482": "https://img.game8.jp/12365400/b759a266b56286b71233908b921e34c2.webp/show",
+        "767402": "https://img.game8.jp/12365302/d3863b9fc817e101038790bd8f815670.webp/original",
+        "768274": "https://img.game8.jp/12374871/36c3035dc6a0f3bc848e01e33e14182e.webp/show",
+        "767403": "https://img.game8.jp/12366325/5ba385638a062879edbd806a57be22d9.webp/show",
+        "767692": "https://img.game8.jp/12369558/991f32244e1939626cffd39ea4f2cec2.webp/show",
+        "767282": "https://img.game8.jp/12365029/5f381bc0ba2eafca384fe9c27d6d476f.webp/show",
+        "764574": "https://img.game8.jp/12350311/0c68b80bc1e04d08af055f7f3ed632de.webp/original",
+        "767437": "https://img.game8.jp/12364949/586f81dbb788304739e9370355624a83.webp/show",
+        "767517": "https://img.game8.jp/12366010/afc33941e7c0f3740cdd0f3d75f31eab.webp/show",
+        "767281": "https://img.game8.jp/12362813/b784cdd30deb4263ea7c40aad4af013c.webp/original",
+        "767321": "https://img.game8.jp/12364037/415c2686c3ad9a706014a25eef90052e.webp/original",
+        "768614": "https://img.game8.jp/12379097/5bdaff374e761b3d77c31b75ead0c4f3.webp/original",
+        "767586": "https://img.game8.jp/12368303/6c90c882eef9db73c3b6076fbe4cf95c.webp/original",
+        "767280": "https://img.game8.jp/12363327/1f0df139165c3c9c87e1cfbd69f9034b.webp/show",
+        "767309": "https://img.game8.jp/12365000/8450b416cb137d808faf13379d66ea41.webp/show",
+        "767519": "https://img.game8.jp/12367108/772d33ae8772ea21726c1941b12e1716.webp/show",
+        "767552": "https://img.game8.jp/12368499/bb15f771ac866ebe760c0c6929053b48.webp/show",
+        "767420": "https://img.game8.jp/12364986/716adba12294c5d778baf3f1b38421d7.webp/show",
+        "767355": "https://img.game8.jp/12363835/2dce0f860215ae1b70fa65966555aacc.webp/show",
+        "767404": "https://img.game8.jp/12384314/12fc657d295660de3fa7277a220d95e8.webp/original",
+        "769344": "https://img.game8.jp/12389126/1ca3bd1722485dcf544d25784f9c3448.webp/original",
+        "767308": "https://img.game8.jp/12363432/46190a2111d834903c887330d0dde736.webp/show",
+        "767357": "https://img.game8.jp/12365441/e26a281b67b4a33fda0cb71ed190e5ed.webp/original",
+        "767333": "https://img.game8.jp/12363511/c2dde1e4cb774922a7a8e64c0caabf54.webp/show",
+        "767463": "https://img.game8.jp/12365099/e237c32b85924ad4b4411fa4e0f905b7.webp/original",
+        "767358": "https://img.game8.jp/12366266/f7daed4faaa533b50f43831b0de8240c.webp/original",
+        "768286": "https://img.game8.jp/12375779/2309fac6847ae1d55dc6ea4b18886c79.webp/show",
+        "771730": "https://img.game8.jp/12411062/fde34d187896c7cd4947949248424c78.webp/show",
+        "769074": "https://img.game8.jp/12382649/081a4462581e6c2a0eb3fdb0c46b0834.webp/show",
+        "769077": "https://img.game8.jp/12382832/0e47f61e87e593f90aca1d30d9630369.webp/show",
+        "767520": "https://img.game8.jp/12366583/ef963f392163c9505c672db519f2be41.webp/show",
+        "768347": "https://img.game8.jp/12377996/bb64ea018541d14bd9603249f6c0b0b2.webp/original",
+        "767371": "https://img.game8.jp/12366490/65bc9905643523db92f9078f4fc73cb4.webp/show",
+        "767411": "https://img.game8.jp/12366417/62dac0326efb865eb6c2f17a0a9aa5fc.webp/show",
+        "767434": "https://img.game8.jp/12364854/7e68c63188f80f12216ccf42f623f569.webp/show",
+        "767514": "https://img.game8.jp/12365799/b96d62f445c13ece3168efeeadb4d4be.webp/show",
+        "767503": "https://img.game8.jp/12366067/9adfb33be3c39f375a8837192570f36a.webp/show",
+        "767637": "https://img.game8.jp/12369209/22c558d40a418cdb4bad818920c905f1.webp/show",
+        "767641": "https://img.game8.jp/12368847/a6c1944ae6b3de17b40c3cc2083f2e2e.webp/show",
+        "767646": "https://img.game8.jp/12368858/eb96f61e829e28472d2152f5ee8d36ea.webp/show",
+        "767647": "https://img.game8.jp/12368912/ab2d377cd22d497f3b22a75b3aeec85b.webp/show",
+        "768187": "https://img.game8.jp/12375357/00c73b0bc83698c34c93c2da3bddaf31.webp/show",
+        "767405": "https://img.game8.jp/12364945/47bf35f76dfb1d6966e8c7263ad18e55.webp/show",
+        "767406": "https://img.game8.jp/12365363/fc240e3e2a553f6fbf8c5b95f3f779e0.webp/show",
+        "768293": "https://img.game8.jp/12375882/1b8bdff8871c1dc01aeeb7b6ee070f49.webp/show",
+        "768186": "https://img.game8.jp/12374614/8862bfd0b6870b5785af6a62caedfddc.webp/show",
+        "768092": "https://img.game8.jp/12371234/29290d8b98d9b9debf2abafe6f8396f8.webp/show",
+        "768017": "https://img.game8.jp/12371130/4c629310641c4e4ff13ef6623f12d8c5.webp/show",
+        "767690": "https://img.game8.jp/12369384/d0d3d87c7f442da3690c891a22488112.webp/show",
+        "768291": "https://img.game8.jp/12375935/3e4bd44e4e7d83fb2ff9a9ceef0cba8c.webp/show",
+        "768329": "https://img.game8.jp/12377579/28394a8472b6ca95624e537ce7ecf0cb.webp/show",
+        "768299": "https://img.game8.jp/12376064/742bb1df118f7cbe6cddff9d04b2ebd7.webp/show"
+      };
+
       const menuList = document.getElementById("menu-list");
       const app = document.getElementById("app");
 
@@ -584,14 +653,24 @@
         for (let i = 0; i < items.length; i += 2) {
           const pair = items.slice(i, i + 2);
           const cols = pair.map(
-            ([jp, zh, href]) => `
+            ([jp, zh, href]) => {
+              const match = href.match(/pages\/(\d+)\.html$/);
+              const preview = match ? previewMap[match[1]] : null;
+              const image = preview
+                ? `<img class="entry-thumb" src="${preview}" loading="lazy" alt="${zh} 预览图" />`
+                : "";
+              return `
               <td>
                 <div class="entry">
-                  <a href="${href}">
-                    <strong>${zh}</strong>
-                  </a>
+                  ${image}
+                  <div class="entry-content">
+                    <a href="${href}">
+                      <strong>${zh}</strong>
+                    </a>
+                  </div>
                 </div>
-              </td>`,
+              </td>`;
+            },
           );
           if (cols.length === 1) cols.push("<td></td>");
           rows.push(`<tr>${cols.join("")}</tr>`);
