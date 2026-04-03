@@ -583,9 +583,13 @@
       ];
 
       const previewMap = {
+        "767275": "https://img.game8.jp/12362171/9dccb61a3a043a2b444b6e0ef72916fa.webp/show",
         "767482": "https://img.game8.jp/12365400/b759a266b56286b71233908b921e34c2.webp/show",
         "767402": "https://img.game8.jp/12365302/d3863b9fc817e101038790bd8f815670.webp/original",
+        "767551": "https://img.game8.jp/12367498/3b2f4cfce6c3aada5b0484c89e6d6360.webp/show",
+        "768035": "https://img.game8.jp/12371565/984caf00aca952453eeaa7a683245916.webp/show",
         "768274": "https://img.game8.jp/12374871/36c3035dc6a0f3bc848e01e33e14182e.webp/show",
+        "768180": "https://img.game8.jp/12373225/51228eec5018e49f908471984cf93018.webp/show",
         "767403": "https://img.game8.jp/12366325/5ba385638a062879edbd806a57be22d9.webp/show",
         "767692": "https://img.game8.jp/12369558/991f32244e1939626cffd39ea4f2cec2.webp/show",
         "767282": "https://img.game8.jp/12365029/5f381bc0ba2eafca384fe9c27d6d476f.webp/show",
@@ -603,6 +607,11 @@
         "767420": "https://img.game8.jp/12364986/716adba12294c5d778baf3f1b38421d7.webp/show",
         "767355": "https://img.game8.jp/12363835/2dce0f860215ae1b70fa65966555aacc.webp/show",
         "767404": "https://img.game8.jp/12384314/12fc657d295660de3fa7277a220d95e8.webp/original",
+        "769315": "https://img.game8.jp/12365391/fbdb706534c56a7322719e9a39526377.webp/original",
+        "769328": "https://img.game8.jp/12365391/fbdb706534c56a7322719e9a39526377.webp/original",
+        "769330": "https://img.game8.jp/12365391/fbdb706534c56a7322719e9a39526377.webp/original",
+        "769331": "https://img.game8.jp/12365391/fbdb706534c56a7322719e9a39526377.webp/original",
+        "769332": "https://img.game8.jp/12365391/fbdb706534c56a7322719e9a39526377.webp/original",
         "769344": "https://img.game8.jp/12389126/1ca3bd1722485dcf544d25784f9c3448.webp/original",
         "767308": "https://img.game8.jp/12363432/46190a2111d834903c887330d0dde736.webp/show",
         "767357": "https://img.game8.jp/12365441/e26a281b67b4a33fda0cb71ed190e5ed.webp/original",
@@ -637,6 +646,8 @@
         "768299": "https://img.game8.jp/12376064/742bb1df118f7cbe6cddff9d04b2ebd7.webp/show"
       };
 
+      const defaultPreview = "https://img.game8.jp/12370997/c73b61dc72abfe533cff7c60d2693eb8.webp/thumb";
+
       const menuList = document.getElementById("menu-list");
       const app = document.getElementById("app");
 
@@ -656,8 +667,9 @@
             ([jp, zh, href]) => {
               const match = href.match(/pages\/(\d+)\.html$/);
               const preview = match ? previewMap[match[1]] : null;
-              const image = preview
-                ? `<img class="entry-thumb" src="${preview}" loading="lazy" alt="${zh} 预览图" />`
+              const imageSrc = preview || defaultPreview;
+              const image = imageSrc
+                ? `<img class="entry-thumb" src="${imageSrc}" loading="lazy" alt="${zh} 预览图" />`
                 : "";
               return `
               <td>
