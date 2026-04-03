@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#f5f2ea"/>
+  <circle cx="640" cy="110" r="120" fill="#e2d9c8"/>
+  <circle cx="180" cy="360" r="140" fill="#ddd3c0"/>
+  <rect x="70" y="70" width="660" height="310" rx="28" fill="#fffaf0" stroke="#c8b79e" stroke-width="4"/>
+  <text x="92" y="160" fill="#7c6c58" font-size="34" font-family="'Microsoft YaHei', sans-serif">Pokémon Pokopia</text>
+  <text x="92" y="240" fill="#4f4335" font-size="76" font-weight="700" font-family="'Microsoft YaHei', sans-serif">一般属性</text>
+  <text x="92" y="310" fill="#7c6c58" font-size="32" font-family="'Microsoft YaHei', sans-serif">宝可梦图鉴</text>
+</svg>
